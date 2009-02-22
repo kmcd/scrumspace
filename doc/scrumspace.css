@@ -17,12 +17,14 @@ tr.header {
 tr.subtotal td { padding-top: 6.4em; }
 td { vertical-align: top; }
 tr td { padding-bottom: 1.6em; }
-.demo, .estimate, .status { width: 12em; }
-.feature { width: 30em; padding-right: 1.6em; }
-.demo, .demo * , .estimate, .estimate * { text-align: center; }
+.demo, .estimate, .status, .owner { width: 12em; }
+.feature, .task, .task input[type='text']  { width: 30em; padding-right: 1.6em; }
+.demo, .demo * , .estimate, .estimate *, .owner, .owner * { text-align: center; }
+.owner input[type='text']{ width: 9.6em; }
 
+/* Header */
 a[href='features.html'] { margin-left: 4em; }
-.features a[href='features.html'] { color: black; text-decoration: none; }
+.features a[href='features.html'], .tasks a[href='tasks.html'] { color: black; text-decoration: none; }
 caption a { margin-right: 1.6em; }
 caption a:first-child { margin-right: 0; }
 

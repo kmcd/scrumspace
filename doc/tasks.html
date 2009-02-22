@@ -1,3 +1,5 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html>
    <head>
       <link href="scrumspace.css" type="text/css" rel="stylesheet"/>
@@ -7,13 +9,14 @@
          <caption>
             <a href='#'>ScrumSpace</a>
             &raquo; CareerMee
-            <a href='#'>Product Backlog</a>
-            <a href='#'>Sprint Backlog</a>
-            <a href='#'>Sprint Burndown</a>
+            <a href='features.html'>Product Backlog</a>
+            <a href='tasks.html'>Sprint Backlog</a>
+            <a href='burndowns.html'>Burndown</a>
          </caption>
          <tr class='header'>
-            <th class='feature'>Feature</th>
-            <th class='estimate'>Estimate</th>
+            <th class='task'>Task <a href="#">new</a></th>
+            <th class='owner'>Owner</th>
+            <th class='estimate'>Remaining</th>
             <th class='demo'>
                <form>
                   <select name='demo'>
@@ -22,55 +25,57 @@
                   </select>
                 </form>
             </th>
-            <th class='status'>Status</th>
          </tr>
          <tr class='subtotal'>
-            <td class='feature'>&nbsp;</td>
+            <td class='task'>&nbsp;</td>
+            <td class='owner'>&nbsp;</td>
             <td class='estimate'>10</td>
             <td class='demo'>&nbsp;</td>
-            <td class='status'>&nbsp;</td>
          </tr>
-         <tr>
-            <td class='feature'>
-               <p>
-                  As a user, I shuold log in to the site and
-               </p>
-               <a href='#'>Screenshot</a>
-               <a href='#'>Workflow</a>
-               <form multipart='true'>
-                  <input type="file"/>
-               </form>
+         <tr class='task'>
+            <td class='description'>
+               <input type="text" value="As a user, I should log in to the site and"/>
             </td>
-            <td class='estimate'>10</td>
-            <td class='demo'>Jun 10 Fri</td>
-            <td class='status'>
+            <td class='owner'>
+               <input type="text" value="Keith"/>
+            </td>
+            <td class='estimate'>
                <form>
-                  <input type="radio" name='status' /> In progress <br/>
-                  <input type="radio" name='status' /> Done <br/>
-               </form>
+                  <select name='estimate'>
+                     <option>1</option>
+                     <option>2</option>
+                  </select>
+                </form>
+            </td>
+            <td class='demo'>
+               <form>
+                  <select name='demo_month'>
+                     <option>Jun 10 Fri</option>
+                  </select>
+                </form>
             </td>
          </tr>
-         <tr class='data'>
-            <td class='feature'>
-               <p>
-                  As a user, I shuold log in to the site and .
-                  As a user, I shuold log in to the site and
-                  As a user, I shuold log in to the site and
-                  As a user, I shuold log in to the site and
-               </p>
-               <a href='#'>Screenshot</a>
-               <a href='#'>Workflow</a>
-               <form multipart='true'>
-                  <input type="file"/>
-               </form>
+         <tr class='task'>
+            <td class='description'>
+               <input type="text" value="As a user, I should log in to the site and"/>
             </td>
-            <td class='estimate'>10</td>
-            <td class='demo'>Jun 10 Fri</td>
-            <td class='status'>
+            <td class='owner'>
+               <input type="text" value="Keith"/>
+            </td>
+            <td class='estimate'>
                <form>
-                  <input type="radio"/> Done
-                  <input type="radio"/> Not done
-               </form>
+                  <select name='estimate'>
+                     <option>1</option>
+                     <option>2</option>
+                  </select>
+                </form>
+            </td>
+            <td class='demo'>
+               <form>
+                  <select name='demo_month'>
+                     <option>Jun 10 Fri</option>
+                  </select>
+                </form>
             </td>
          </tr>
       </table>
