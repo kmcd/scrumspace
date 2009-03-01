@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+create_feature:
+  description: As a product owner, I should describe a deliverable feature
+  estimate: 1
+  demo: March 14 2008
+  status: 1
+
+prioritise_features:
+  description: As a product owner, I should prioritise all deliverable features
+  estimate: 1
+  demo: March 14 2008
+  status: 1
