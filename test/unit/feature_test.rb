@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FeatureTest < ActiveSupport::TestCase
+class CreateFeatureTest < ActiveSupport::TestCase
   test "should have a multi line description" do
     # TODO: really test multi-line datatype
     assert @create_feature.description =~ /As a product owner,/
@@ -14,7 +14,11 @@ class FeatureTest < ActiveSupport::TestCase
   end
   
   test "should have a demo" do
-    assert @create_feature.demo.instance_of?(Date) == true
+    assert @create_feature.demo.instance_of?(Date)
+  end
+  
+  test "should have tasks" do
+    assert @create_feature.tasks.first.instance_of?(Task)
   end
 end
 

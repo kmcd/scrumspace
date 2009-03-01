@@ -1,7 +1,8 @@
 class Feature < ActiveRecord::Base
   validates_numericality_of :estimate
+  has_many :tasks
   
-  # Simplest solution for feature status. 
+  # Simplest solution for feature status.
   # Pass in an integer to save and return string based on case statement below
   # Maybe refactor to has_contant or Acts as State Machine
   def status
