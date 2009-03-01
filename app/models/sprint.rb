@@ -6,10 +6,25 @@ class Sprint
   end
   
   def estimate
-    Feature.sum(:estimate, :conditions => ["demo = ?", @demo] )
+    Feature.sum :estimate, current_demo
   end
   
   def features
-    Feature.find(:all, :conditions => ["demo = ?", @demo] )
+    Feature.find :all, current_demo
+  end
+  
+  def remaining(owner=nil)
+    conditions = if owner.nil?
+      current_demo
+    else
+      {:conditions => ["demo = ? AND owner = ?", @demo, owner]}
+    end
+    Task.sum :remaining, conditions
+  end
+  
+  private
+  
+  def current_demo
+    {:conditions => ["demo = ?", @demo]}
   end
 end

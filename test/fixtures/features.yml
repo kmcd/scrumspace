@@ -3,11 +3,11 @@
 create_feature:
   description: As a product owner, I should describe a deliverable feature
   estimate: 1
-  demo: March 1 2008
+  demo: March 1 2009
   status: 1
 
 prioritise_features:
   description: As a product owner, I should prioritise all deliverable features
   estimate: 1
-  demo: March 14 2008
+  demo: March 14 2009
   status: 1
