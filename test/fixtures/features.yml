@@ -5,9 +5,11 @@ create_feature:
   estimate: 1
   demo: March 1 2009
   status: 1
+  product: scrumspace
 
 prioritise_features:
   description: As a product owner, I should prioritise all deliverable features
   estimate: 1
   demo: March 14 2009
   status: 1
+  product: scrumspace

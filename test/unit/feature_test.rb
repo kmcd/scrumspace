@@ -20,6 +20,10 @@ class CreateFeatureTest < ActiveSupport::TestCase
   test "should have tasks" do
     assert @create_feature.tasks.first.instance_of?(Task)
   end
+  
+  test "should have a product" do
+    assert_equal @create_feature.product, @scrumspace
+  end
 end
 
 class FeatureStatusTest < ActiveSupport::TestCase

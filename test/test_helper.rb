@@ -12,11 +12,6 @@ class Test::Unit::TestCase
   # Read Mike Clark's excellent walkthrough at
   #   http://clarkware.com/cgi/blosxom/2005/10/24#Rails10FastTesting
   #
-  # Every Active Record database supports transactions except MyISAM tables
-  # in MySQL.  Turn off transactional fixtures in this case; however, if you
-  # don't care one way or the other, switching from MyISAM to InnoDB tables
-  # is recommended.
-  #
   # The only drawback to using transactional fixtures is when you actually 
   # need to test transactions.  Since your test is bracketed by a transaction,
   # any transactions started in your code will be automatically rolled back.
