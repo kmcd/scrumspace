@@ -27,18 +27,18 @@ class CreateFeatureTest < ActiveSupport::TestCase
 end
 
 class FeatureStatusTest < ActiveSupport::TestCase
-  test "should have a not started status" do
-    assert @create_feature.status == "Not started"
+  test "should have a default not started status" do
+    assert_equal "Backlog", @create_feature.status
   end
-  
+    
   test "should have an in progress status" do
     @create_feature.update_attribute :status, 2
-    assert @create_feature.status == "In progress"
+    assert @create_feature.status == "Started"
   end
   
   test "should have an awaiting verificaion status" do
     @create_feature.update_attribute :status, 3
-    assert @create_feature.status == "Awaiting verification"
+    assert_equal "Verification", @create_feature.status 
   end
   
   test "should have an done status" do

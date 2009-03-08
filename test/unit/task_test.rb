@@ -1,5 +1,7 @@
 require 'test_helper'
 
+# I'd rather:
+# test_case "Create mockups task" do
 class CreateMockupsTaskTest < ActiveSupport::TestCase
   test "should have a description" do
     assert @create_mockups.description =~ /html screens/

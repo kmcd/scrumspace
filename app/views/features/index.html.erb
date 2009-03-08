@@ -1,0 +1,31 @@
+<a href='#'>ScrumSpace</a>
+&raquo; CareerMee
+<a href='features.html'>Product Backlog</a>
+<a href='tasks.html'>Sprint Backlog</a>
+<a href='burndowns.html'>Burndown</a>
+
+<form>
+   <select name='demo'>
+      <option>All demos</option>
+      <option>Jun 10 Fri</option>
+   </select>
+</form>
+
+Status
+
+Subtotal:10
+
+<% @features.each do |feature| %>
+   <% form_for :feature, @feature, :url => features_path do |f| %>
+      <%= f.text_area :description, :cols => 30, :rows => 5 %>
+      <%= f.select :estimate, (1..10).to_a %>
+      <%= f.date_select :demo %>
+      
+      <% Feature::STATUS.each do |status| %>
+         <%= f.radio_button :status, :value => status %>
+         <%= f.label :status, status %>
+      <% end %>
+      
+      <button>Save</button>
+   <% end %>
+<% end %>
