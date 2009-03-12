@@ -1,0 +1,6 @@
+Feature: Create a new task
+Feature: Update a task
+Feature: Delete a task
+Feature: View all tasks in current sprint
+Feature: View all tasks for a given user
+Feature: View all tasks for a given sprint
