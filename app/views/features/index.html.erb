@@ -11,7 +11,9 @@
    </select>
 </form>
 
-Status
+<p id='subtotal'>
+   <%= @features.sum(:estimate) %>
+</p>
 
 Subtotal:10
 
