@@ -2,6 +2,15 @@ require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   test "should have a name" do
-    assert @scrumspace.name == 'scrumspace'
+    assert_equal 'scrumspace', @scrumspace.name
+  end
+  
+  test "should have features" do
+    # TODO: refactor to test all features are in fact ScrumSpace features
+    assert_equal Feature.count, @scrumspace.features.size
+  end
+  
+  test "should find all features for a given demo" do
+    assert_equal [@create_feature], @scrumspace.features.demo(@create_feature.demo.to_s(:db))
   end
 end

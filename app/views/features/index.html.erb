@@ -4,18 +4,16 @@
 <a href='tasks.html'>Sprint Backlog</a>
 <a href='burndowns.html'>Burndown</a>
 
-<form>
-   <select name='demo'>
-      <option>All demos</option>
-      <option>Jun 10 Fri</option>
-   </select>
-</form>
-
-<p id='subtotal'>
-   <%= @features.sum(:estimate) %>
+<p id='demos'>
+   <%= link_to('all', features_path) %>
+   <% @product.features.map {|f| f.demo.to_s(:db) }.each do |demo| %>
+      <%= link_to demo, sprint_path(demo) %>
+   <% end %>
 </p>
 
-Subtotal:10
+<p id='subtotal'>
+   Subtotal: <%= @features.inject(0) { |s,f| s += f.estimate } %>
+</p>
 
 <h1>New feature</h1>
 <% form_for :feature, Feature.new, :url => features_path do |f| %>

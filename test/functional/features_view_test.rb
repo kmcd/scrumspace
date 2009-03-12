@@ -41,15 +41,19 @@ module View
       end
     end
     
-    test "should have date select for demo" do
-      each_feature do |f|
-        # FIXME: find out how to match rails date form helper output
-        # assert_select "form[action=/features/#{f.id}] select[name=?]", /feature\[estimate\]/
+    test "should have a link to all demos" do
+      assert_select "p#demos a:first-child[href=/features]", 1
+    end
+    
+    test "should have a link to each demo" do
+      # TODO: refactor to @scrumspace.sprints OR @scrumspace.demos
+      @scrumspace.features.map {|f| f.demo.to_s(:db) }.uniq.each do |demo|
+        assert_select "p#demos a[href=/sprints/#{demo}]", 1
       end
     end
     
     test "should have an subtotal of all estimations" do
-      assert_select "#subtotal", @scrumspace.features.sum(:estimate)
+      assert_select "#subtotal", :text => /#{@scrumspace.features.sum(:estimate)}/
     end
   end
 end
