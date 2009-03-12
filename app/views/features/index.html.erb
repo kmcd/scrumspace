@@ -15,14 +15,30 @@ Status
 
 Subtotal:10
 
-<% @features.each do |feature| %>
-   <% form_for :feature, @feature, :url => features_path do |f| %>
+<h1>New feature</h1>
+<% form_for :feature, Feature.new, :url => features_path do |f| %>
+   <%= f.text_area :description, :cols => 30, :rows => 5 %>
+   <%= f.select :estimate, (1..10).to_a %>
+   <%= f.date_select :demo %>
+   
+   <% Feature::STATUS.each do |status| %>
+      <%= f.radio_button :status, status %>
+      <%= f.label :status, status %>
+   <% end %>
+   
+   <button>Save</button>
+<% end %>
+
+<br/><hr/><br/>
+
+<% @features.each do |@feature| %>
+   <% form_for :feature, :url => feature_path(@feature) do |f| %>
       <%= f.text_area :description, :cols => 30, :rows => 5 %>
       <%= f.select :estimate, (1..10).to_a %>
       <%= f.date_select :demo %>
       
       <% Feature::STATUS.each do |status| %>
-         <%= f.radio_button :status, :value => status %>
+         <%= f.radio_button :status, status %>
          <%= f.label :status, status %>
       <% end %>
       

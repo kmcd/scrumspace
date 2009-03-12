@@ -7,13 +7,9 @@ class IndexControllerTest < ActionController::TestCase
     get :index
   end
   
-  test "should have an index page" do
+  test "have an index page" do
     assert_response :success
     assert_template 'index'
-  end
-  
-  test "should find the correct product" do
-    assert_equal @scrumspace, assigns(:product)
   end
   
   test "should find the products features" do
@@ -24,9 +20,15 @@ end
 class CreateControllerTest < ActionController::TestCase
   tests FeaturesController
   
-  # should accept feature attributes
-  # should only accept post requests
-  # should redirect back to product backlog
+  test "should create a new feature" do
+    post :create, :feature => {:description => 'foo'}
+    assert_equal 'foo', Feature.last.description
+  end
+  
+  test "should return browser to product backlog" do
+    post :create, :feature => {:description => 'foo'}
+    assert_redirected_to features_path
+  end
 end
 
 # NewControllerTest
