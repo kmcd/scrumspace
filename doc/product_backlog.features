@@ -1,4 +1,4 @@
-Feature: Add features to product backlog
+Feature: Add features to product backlog [DONE]
    As a Product owner I should add features to save ideas
    
    Scenario: No other features
