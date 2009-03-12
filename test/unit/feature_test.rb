@@ -13,6 +13,14 @@ class CreateFeatureTest < ActiveSupport::TestCase
     end
   end
   
+  test "should have 1 as default numerical estimate" do
+    assert_equal 1, Feature.create!(:description => 'foo').estimate
+  end
+  
+  test "should have backlog as default status" do
+    assert_equal 'Backlog', Feature.create!(:description => 'foo').status
+  end
+  
   test "should have a demo" do
     assert @create_feature.demo.instance_of?(Date)
   end
@@ -32,17 +40,17 @@ class FeatureStatusTest < ActiveSupport::TestCase
   end
     
   test "should have an in progress status" do
-    @create_feature.update_attribute :status, 2
-    assert @create_feature.status == "Started"
+    @create_feature.update_attribute :status, 'Started'
+    assert_equal "Started", @create_feature.reload.status
   end
   
   test "should have an awaiting verificaion status" do
-    @create_feature.update_attribute :status, 3
-    assert_equal "Verification", @create_feature.status 
+    @create_feature.update_attribute :status, "Verification"
+    assert_equal "Verification", @create_feature.reload.status 
   end
   
   test "should have an done status" do
-    @create_feature.update_attribute :status, 4
-    assert @create_feature.status == "Done"
+    @create_feature.update_attribute :status, "Done"
+    assert_equal "Done", @create_feature.reload.status
   end
 end
