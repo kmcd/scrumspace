@@ -8,26 +8,42 @@ class IndexViewTest < ActionController::TestCase
     get :index
   end
   
-  test "should have a form for each feature" do
-    assert_select "form[action=/features]", @scrumspace.features.size
+  def each_feature
+    @scrumspace.features.each { |f| yield f }
+  end
+  
+  test "should have a form to create a new feature" do
+    assert_select "form[action=/features]", 1
+  end
+  
+  test "should have a form to update each existing feature" do
+    each_feature do |f| 
+      assert_select "form[action=/features/#{f.id}]", 1 
+    end
   end
   
   test "should have a submit button" do
-    assert_select "form[action=/features] button", @scrumspace.features.size
+    each_feature do |f| 
+      assert_select "form[action=/features/#{f.id}] button", 1
+    end
   end
   
   test "should have textarea description" do
-    assert_select "form[action=/features] textarea[name=?]", /feature\[description\]/
+    each_feature do |f|
+      assert_select "form[action=/features/#{f.id}] textarea[name=?]", /feature\[description\]/
+    end
   end
   
   test "should have number select for estimate" do
-    assert_select "form[action=/features] select[name=?]", /feature\[estimate\]/
+    each_feature do |f|
+      assert_select "form[action=/features/#{f.id}] select[name=?]", /feature\[estimate\]/
+    end
   end
   
   test "should have date select for demo" do
-    # TODO: improve assert_select testing
-    # assert_select "form[action=/features] select[name=?]", /\[demo(1i)\]/
+    each_feature do |f|
+      # FIXME: find out how to match rails date form helper output
+      # assert_select "form[action=/features/#{f.id}] select[name=?]", /feature\[estimate\]/
+    end
   end
-  
-  # form should post to create
 end

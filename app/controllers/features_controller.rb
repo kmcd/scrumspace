@@ -8,6 +8,11 @@ class FeaturesController < ApplicationController
     redirect_to features_path
   end
   
+  def update
+    Feature.find(params[:id]).update_attributes! params[:feature]
+    redirect_to features_path
+  end
+  
   private
   
   def find_product

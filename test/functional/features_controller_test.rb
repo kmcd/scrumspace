@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IndexControllerTest < ActionController::TestCase
+class IndexTest < ActionController::TestCase
   tests FeaturesController
   
   def setup
@@ -17,16 +17,34 @@ class IndexControllerTest < ActionController::TestCase
   end
 end
 
-class CreateControllerTest < ActionController::TestCase
+class CreateTest < ActionController::TestCase
   tests FeaturesController
   
-  test "should create a new feature" do
+  def setup
     post :create, :feature => {:description => 'foo'}
+  end
+  
+  test "should create a new feature" do
     assert_equal 'foo', Feature.last.description
   end
   
   test "should return browser to product backlog" do
-    post :create, :feature => {:description => 'foo'}
+    assert_redirected_to features_path
+  end
+end
+
+class UpdateTest < ActionController::TestCase
+  tests FeaturesController
+  
+  def setup
+    put :update, :id => @prioritise_features.id, :feature => {:description => 'foo'}
+  end
+  
+  test "should update an existing feature" do
+    assert_equal 'foo', @prioritise_features.reload.description
+  end
+  
+  test "should return browser to product backlog" do
     assert_redirected_to features_path
   end
 end

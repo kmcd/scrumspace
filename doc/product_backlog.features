@@ -1,9 +1,5 @@
 Feature: Add features to product backlog [DONE]
-   As a Product owner I should add features to save ideas
-   
-   Scenario: No other features
-   Scenario: Features already added
-   
+Feature: Update an existing feature in product backlog
 Feature: Estimate features in product backlog
 Feature: Prioritise features in product backlog
 Feature: Create a release plan

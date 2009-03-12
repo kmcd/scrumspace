@@ -32,7 +32,7 @@ Subtotal:10
 <br/><hr/><br/>
 
 <% @features.each do |@feature| %>
-   <% form_for :feature, :url => feature_path(@feature) do |f| %>
+   <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'PUT' } do |f| %>
       <%= f.text_area :description, :cols => 30, :rows => 5 %>
       <%= f.select :estimate, (1..10).to_a %>
       <%= f.date_select :demo %>
