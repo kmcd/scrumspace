@@ -4,4 +4,6 @@ class Product < ActiveRecord::Base
       find :all, :conditions => ["demo = ?", date]
     end
   end
+  
+  has_many :tasks, :through => :features
 end

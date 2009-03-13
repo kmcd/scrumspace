@@ -1,0 +1,13 @@
+<% @tasks.each do |t| %>
+   <% form_for :task, t, :url => task_path(t), :html => { :method => 'PUT' } do |f|%>
+      <%= f.text_field :description %>
+      <%= f.text_field :owner %>
+      <%= f.select :remaining, (1..10).to_a %>
+      <%= f.date_select :demo %>
+      <button>Save</button>
+   <% end %>
+   
+   <% form_for :task, t, :url => task_path(t), :html => { :method => 'DELETE' } do |f|%>
+      <button>Delete</button>
+   <% end %>
+<% end %>

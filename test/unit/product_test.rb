@@ -13,4 +13,8 @@ class ProductTest < ActiveSupport::TestCase
   test "should find all features for a given demo" do
     assert_equal [@create_feature], @scrumspace.features.demo(@create_feature.demo.to_s(:db))
   end
+  
+  test "should have tasks" do
+    assert_equal [@create_mockups,@create_data_model], @scrumspace.tasks
+  end
 end
