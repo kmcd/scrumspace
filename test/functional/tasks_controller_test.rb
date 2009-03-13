@@ -9,7 +9,25 @@ class TasksControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  test "should assign all products tasks" do
+  test "should assign all products tasks for index" do
     assert_equal @scrumspace.tasks, assigns(:tasks)
+  end
+end
+
+class TasksControllerDeleteTest < ActionController::TestCase
+  tests TasksController
+  
+  def setup
+    delete :destroy, {:id => @create_mockups.id}
+  end
+  
+  test "should destroy the specified task" do
+    assert_raise ActiveRecord::RecordNotFound do
+      Task.find(@create_mockups.id)
+    end
+  end
+  
+  test "should return browser to index" do
+    assert_redirected_to tasks_path
   end
 end
