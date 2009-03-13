@@ -9,7 +9,12 @@ class FeaturesController < ApplicationController
   end
   
   def update
-    Feature.find(params[:id]).update_attributes! params[:feature]
+    @product.features.find(params[:id]).update_attributes! params[:feature]
+    redirect_to features_path
+  end
+  
+  def destroy
+    @product.features.find(params[:id]).destroy
     redirect_to features_path
   end
 end

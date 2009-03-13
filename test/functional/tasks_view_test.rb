@@ -7,8 +7,9 @@ require 'test_helper'
 #   end
 # end
 
-class TasksViewTest < ActionController::TestCase
+class TasksViewUpdateTest < ActionController::TestCase
   tests TasksController
+  include TasksTestHelper
   
   def setup
     get :index
@@ -45,20 +46,17 @@ class TasksViewTest < ActionController::TestCase
       assert_select( task_form(t) + "input[value='DELETE']" )
     end
   end
+end
+
+class TasksViewCreateTest < ActionController::TestCase
+  tests TasksController
+  include TasksTestHelper
   
-  private
-  
-  def each_task
-    @scrumspace.tasks.each {|t| yield t }
+  def setup
+    get :index
   end
   
-  def task_form(t)
-    "form[action=/tasks/#{t.id}] "
-  end
-  
-  def assert_task_field(form_field, actual=nil)
-    each_task do |t|
-      assert_select "#{task_form(t)} #{form_field}", actual
-    end
+  test "should have a form to create a new task" do
+    assert_select "form[action=/tasks]"
   end
 end

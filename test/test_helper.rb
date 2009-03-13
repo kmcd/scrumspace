@@ -32,3 +32,21 @@ class Test::Unit::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+module TasksTestHelper
+  private
+  
+  def each_task
+    @scrumspace.tasks.each {|t| yield t }
+  end
+  
+  def task_form(t)
+    "form[action=/tasks/#{t.id}] "
+  end
+  
+  def assert_task_field(form_field, actual=nil)
+    each_task do |t|
+      assert_select "#{task_form(t)} #{form_field}", actual
+    end
+  end
+end

@@ -12,4 +12,9 @@ class TasksController < ApplicationController
     @product.tasks.find(params[:id]).update_attributes!(params[:task])
     redirect_to tasks_path
   end
+  
+  def create
+    @product.tasks.create! params[:task]
+    redirect_to tasks_path
+  end
 end

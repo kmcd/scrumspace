@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IndexTest < ActionController::TestCase
+class FeaturesControllerIndexTest < ActionController::TestCase
   tests FeaturesController
   
   def setup
@@ -17,7 +17,7 @@ class IndexTest < ActionController::TestCase
   end
 end
 
-class CreateTest < ActionController::TestCase
+class FeaturesControllerCreateTest < ActionController::TestCase
   tests FeaturesController
   
   def setup
@@ -33,7 +33,7 @@ class CreateTest < ActionController::TestCase
   end
 end
 
-class UpdateTest < ActionController::TestCase
+class FeaturesControllerUpdateTest < ActionController::TestCase
   tests FeaturesController
   
   def setup
@@ -49,5 +49,20 @@ class UpdateTest < ActionController::TestCase
   end
 end
 
-# NewControllerTest
-# DeleteControllerTest
+class FeaturesControllerDeleteTest < ActionController::TestCase
+  tests FeaturesController
+  
+  def setup
+    post :destroy, :id => @prioritise_features.id
+  end
+  
+  test "should create a new feature" do
+    assert_raise ActiveRecord::RecordNotFound do
+      Feature.find @prioritise_features.id
+    end
+  end
+  
+  test "should return browser to product backlog" do
+    assert_redirected_to features_path
+  end
+end

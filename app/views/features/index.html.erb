@@ -44,4 +44,8 @@
       
       <button>Save</button>
    <% end %>
+   
+   <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'DELETE' } do |f| %>
+      <button>Delete</button>
+   <% end %>
 <% end %>

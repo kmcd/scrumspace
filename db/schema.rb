@@ -9,11 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090306081816) do
+ActiveRecord::Schema.define(:version => 20090313143956) do
 
   create_table "features", :force => true do |t|
     t.text    "description"
-    t.integer "estimate"
+    t.integer "estimate",    :default => 1
     t.date    "demo"
     t.integer "status"
     t.integer "product_id"
@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(:version => 20090306081816) do
 
   create_table "tasks", :force => true do |t|
     t.string   "description"
-    t.integer  "remaining"
+    t.integer  "remaining",   :default => 3
     t.date     "demo"
     t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "feature_id"
+    t.integer  "product_id"
   end
 
 end

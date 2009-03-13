@@ -22,10 +22,6 @@ class CreateMockupsTaskTest < ActiveSupport::TestCase
     assert @create_mockups.demo.instance_of?(Date)
   end
   
-  test "should have a feature" do
-    assert @create_mockups.feature.instance_of?(Feature)
-  end
-  
   test "should always have a product" do
     assert_equal @scrumspace, @create_mockups.product
   end

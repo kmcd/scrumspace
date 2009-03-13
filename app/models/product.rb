@@ -5,5 +5,5 @@ class Product < ActiveRecord::Base
     end
   end
   
-  has_many :tasks, :through => :features
+  has_many :tasks
 end

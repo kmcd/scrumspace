@@ -5,11 +5,11 @@ create_mockups:
   remaining: 0
   demo: 2009-03-01
   owner: Keith
-  feature: create_feature
+  product: scrumspace
 
 create_data_model:
   description: Read Domain Driven Design and create base data model
   remaining: 2
   demo: 2009-03-01
   owner: Keith
-  feature: create_feature
+  product: scrumspace

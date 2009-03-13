@@ -1,3 +1,12 @@
+<% form_for :task, Task.new, :url =>tasks_path do |f|%>
+   <%# TODO: dry up form fields -%>
+   <%= f.text_field :description %>
+   <%= f.text_field :owner %>
+   <%= f.select :remaining, (1..10).to_a %>
+   <%= f.date_select :demo %>
+   <button>Create</button>
+<% end %>
+
 <% @tasks.each do |t| %>
    <% form_for :task, t, :url => task_path(t), :html => { :method => 'PUT' } do |f|%>
       <%= f.text_field :description %>

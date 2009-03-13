@@ -47,3 +47,19 @@ class TasksControllerUpdateTest < ActionController::TestCase
     assert_redirected_to tasks_path
   end
 end
+
+class TasksControllerCreateTest < ActionController::TestCase
+  tests TasksController
+  
+  def setup
+    post :create, :task => {:description => 'foo'}
+  end
+  
+  test "should update the specified task" do
+    assert_equal 'foo', @scrumspace.tasks.last.description
+  end
+  
+  test "should return browser to index" do
+    assert_redirected_to tasks_path
+  end
+end
