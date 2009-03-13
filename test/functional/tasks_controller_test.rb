@@ -31,3 +31,19 @@ class TasksControllerDeleteTest < ActionController::TestCase
     assert_redirected_to tasks_path
   end
 end
+
+class TasksControllerUpdateTest < ActionController::TestCase
+  tests TasksController
+  
+  def setup
+    put :update, {:id => @create_mockups.id, :task => {:description => 'foo'}}
+  end
+  
+  test "should update the specified task" do
+    assert_equal 'foo', @create_mockups.reload.description
+  end
+  
+  test "should return browser to index" do
+    assert_redirected_to tasks_path
+  end
+end
