@@ -12,7 +12,7 @@
 <hr/>
 
 <h1>Filter tasks</h1>
-<% form_for :task, :url => filter_tasks_path, :html => {:method => 'GET'} do |f|%>
+<% form_for :task, :url => filter_tasks_path, :html => {:method => 'GET'} do |f| %>
    <%= f.select :owner, @product.team %>
    <%= f.select :demo, @product.demos %>
    <button>Filter</button>
