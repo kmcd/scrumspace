@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :features
   map.resources :sprints
-  map.resources :tasks
+  map.resources :tasks, :collection => { :filter => :get }
   
   # Sample resource route with options:
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }

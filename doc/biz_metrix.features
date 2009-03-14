@@ -1,0 +1,17 @@
+# Google Dave McClure Startup Metrics for more info
+
+Feature: Measure customer acquisition
+   View home page data (google analytics)
+   
+Feature: Measure customer activation
+   View signup data
+   View 1st usage of app
+   
+Feature: Measure customer renention
+   View all usage after 1st login
+   
+Feature: Measure customer referal
+   NFC (blogs/coupons)
+   
+Feature: Measure customer revenue
+   View paid signups & drop outs

@@ -51,6 +51,37 @@ class TasksViewIndexTest < ActionController::TestCase
   end
 end
 
+class TasksViewFilterTest < ActionController::TestCase
+  tests TasksController
+  
+  def setup
+    get :index
+  end
+
+  test "should have a task filter" do
+    assert_select "form[action=/tasks/filter][method=?]", /get/i
+    assert_select "form[action=/tasks/filter] button", /Filter/
+  end
+  
+  test "should be able to filter tasks by owner" do
+    assert_select "form[action=/tasks/filter] select[name=?]", /task\[owner\]/
+    
+    @scrumspace.tasks.map(&:owner).each do |owner|
+      assert_select "form[action=/tasks/filter] select option[value=?]", /Keith/
+      assert_select "form[action=/tasks/filter] select option", /Keith/
+    end
+  end
+  
+  test "should be able to filter tasks by existing demo" do
+    assert_select "form[action=/tasks/filter] select[name=?]", /task\[demo\]/
+    
+    @scrumspace.demos.each do |date|
+      assert_select "form[action=/tasks/filter] select option[value=?]", /#{date}/
+      assert_select "form[action=/tasks/filter] select option", /#{date}/
+    end
+  end
+end
+
 class TasksViewCreateTest < ActionController::TestCase
   tests TasksController
   include TasksTestHelper

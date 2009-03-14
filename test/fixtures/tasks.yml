@@ -10,6 +10,6 @@ create_mockups:
 create_data_model:
   description: Read Domain Driven Design and create base data model
   remaining: 2
-  demo: 2009-03-01
-  owner: Keith
+  demo: 2009-03-14
+  owner: Ringo
   product: scrumspace

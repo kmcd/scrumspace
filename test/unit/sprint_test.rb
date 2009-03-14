@@ -14,14 +14,14 @@ class SprintTest < ActiveSupport::TestCase
   end
   
   test "should calcuate total of all estimated features" do
-    assert @sprint.estimate == @create_feature.estimate
+    assert @create_feature.estimate, @sprint.estimate
   end
   
   test "should calcuate total tasks remaining" do
-    assert_equal @sprint.remaining, Task.sum(:remaining)
+    assert_equal @create_mockups.remaining, @sprint.remaining
   end
   
   test "should calcuate developers total tasks remaining" do
-    assert_equal @sprint.remaining('Keith'), Task.sum(:remaining)
+    assert_equal @create_mockups.remaining, @sprint.remaining('Keith')
   end
 end

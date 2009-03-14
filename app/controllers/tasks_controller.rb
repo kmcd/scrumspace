@@ -17,4 +17,9 @@ class TasksController < ApplicationController
     @product.tasks.create! params[:task]
     redirect_to tasks_path
   end
+  
+  def filter
+    @tasks = @product.tasks.filter(params[:task])
+    render :template => 'tasks/index'
+  end
 end

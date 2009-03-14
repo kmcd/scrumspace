@@ -1,8 +1,9 @@
 require 'test_helper'
 
 # I'd rather:
-# test_case "Create mockups task" do
-class CreateMockupsTaskTest < ActiveSupport::TestCase
+# unit_test Task, "create mockups ..." do
+
+class TaskTest < ActiveSupport::TestCase
   test "should have a description" do
     assert @create_mockups.description =~ /html screens/
   end
@@ -24,5 +25,25 @@ class CreateMockupsTaskTest < ActiveSupport::TestCase
   
   test "should always have a product" do
     assert_equal @scrumspace, @create_mockups.product
+  end
+end
+
+class TaskFilterTest < ActiveSupport::TestCase
+  test "should filter by owner" do
+    assert_equal [@create_mockups], @scrumspace.tasks.filter(:owner => 'Keith')
+  end
+  
+  test "should filter by demo" do
+    assert_equal [@create_mockups], @scrumspace.tasks.filter(:demo => '2009-03-01')
+  end
+  
+  test "should filter by demo AND owner" do
+    assert_equal [@create_data_model], @scrumspace.tasks.
+      filter(:owner => 'Ringo', :demo => '2009-03-14')
+  end
+  
+  test "should filter without demo or owner" do
+    assert_equal @scrumspace.tasks, @scrumspace.tasks.filter
+    assert_equal @scrumspace.tasks, @scrumspace.tasks.filter(nil)
   end
 end

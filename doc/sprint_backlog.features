@@ -2,6 +2,7 @@ Feature: Create a new task [DONE]
 Feature: Update a task [DONE]
 Feature: Delete a task [DONE]
 Feature: View subtotal for all displayed tasks [DONE]
-Feature: View all tasks in current sprint
-Feature: View all tasks for a given user
-Feature: View all tasks for a given sprint
+
+Feature: View all tasks in current sprint [STARTED]
+Feature: View all tasks for a given user [STARTED]
+Feature: View all tasks for a given sprint [STARTED]

@@ -4,7 +4,7 @@ class Feature < ActiveRecord::Base
   
   belongs_to :product
     
-  # TODO: refactor to has_a :status, %w( Backlog Started Verification Done )
+  # TODO: refactor to attr_enum :status, %w( Backlog Started Verification Done )
   STATUS = %w( Backlog Started Verification Done )
   
   def status
