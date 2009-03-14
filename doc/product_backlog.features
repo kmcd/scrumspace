@@ -4,13 +4,13 @@ Feature: Update an existing feature in product backlog [DONE]
 Feature: Estimate features in product backlog [DONE]
    Should show subtoal
    
-Feature: Show only features for a given demo
+Feature: Show only features for a given demo [DONE]
    Should filter by demo
    
-Feature: Create a release plan
+Feature: Create a release plan [DONE]
    Mix of update demo date, filter by demo & subtotal
 
-Feature: View release plan
+Feature: View release plan [DONE]
    filter by demo & subtotal
    
 Feature: Prioritise features in product backlog

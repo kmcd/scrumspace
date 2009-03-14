@@ -2,12 +2,11 @@ require 'test_helper'
 
 # TODO: refactor to:
 # view Tasks, "index" do
-# should "have a form for each task" do
+#   should "have a form for each task" do
 #     flunk
 #   end
 # end
-
-class TasksViewUpdateTest < ActionController::TestCase
+class TasksViewIndexTest < ActionController::TestCase
   tests TasksController
   include TasksTestHelper
   
@@ -45,6 +44,10 @@ class TasksViewUpdateTest < ActionController::TestCase
     each_task do |t|
       assert_select( task_form(t) + "input[value='DELETE']" )
     end
+  end
+  
+  test "should have the total remaining for all displayed tasks" do
+    assert_select "#subtotal", /#{@scrumspace.tasks.sum(:remaining)}/
   end
 end
 
