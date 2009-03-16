@@ -10,8 +10,13 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal Feature.count, @scrumspace.features.size
   end
   
-  test "should find all features for a given demo" do
+  test "should find features for a given demo" do
     assert_equal [@create_feature], @scrumspace.features.demo(@create_feature.demo.to_s(:db))
+  end
+  
+  test "should find all features if no demo provided" do
+    assert_equal @scrumspace.features, @scrumspace.features.demo('Foo')
+    assert_equal @scrumspace.features, @scrumspace.features.demo(nil)
   end
   
   test "should have tasks" do

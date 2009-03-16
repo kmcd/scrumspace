@@ -1,8 +1,12 @@
 class Product < ActiveRecord::Base
   has_many :features do
-    # TODO: refactor to named scope
+    # TODO: refactor to named scope & private methods
     def demo(date)
-      find :all, :conditions => ["demo = ?", date]
+      if date =~ /\d{4}-\d{2}-\d{2}/
+        find :all, :conditions => ["demo = ?", date]
+      else
+        find :all
+      end
     end
   end
   
