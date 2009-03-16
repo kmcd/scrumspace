@@ -5,7 +5,7 @@ class Feature < ActiveRecord::Base
   belongs_to :product
     
   # TODO: refactor to attr_enum :status, %w( Backlog Started Verification Done )
-  STATUS = %w( Backlog Started Verification Done )
+  STATUS = %w( Backlog Started Done )
   
   def status
     self[:status].nil? ? STATUS.first : STATUS[ self[:status] ] 

@@ -56,7 +56,7 @@ class FeaturesViewIndexSprintSelectionTest < ActionController::TestCase
   tests FeaturesController
   
   # <form action="/features" method="get">
-  #    <select id="demo" name="demo"><option>All</option><option>2009-03-16</option><option>2009-07-16</option></select>
+  #    <select id="demo" name="demo"><option>All</option><option>2009-03-16</option> ... </select>
   #    <button>Select demo</button>
   # </form>
 

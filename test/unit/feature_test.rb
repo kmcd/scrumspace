@@ -40,11 +40,6 @@ class FeatureStatusTest < ActiveSupport::TestCase
     assert_equal "Started", @create_feature.reload.status
   end
   
-  test "should have an awaiting verificaion status" do
-    @create_feature.update_attribute :status, "Verification"
-    assert_equal "Verification", @create_feature.reload.status 
-  end
-  
   test "should have an done status" do
     @create_feature.update_attribute :status, "Done"
     assert_equal "Done", @create_feature.reload.status
