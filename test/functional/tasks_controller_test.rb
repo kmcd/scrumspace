@@ -67,28 +67,24 @@ end
 class TasksControllerFilterTest < ActionController::TestCase
   tests TasksController
   
-  test "should have a /tasks/filter route" do
-    assert_routing filter_tasks_path, {:controller => 'tasks', :action => 'filter'}
-  end
-  
   test "should render the default template" do
-    get :filter
+    get :index
     assert_response :success
     assert_template 'tasks/index'
   end
   
   test "should fetch tasks for a given demo" do
-    get :filter, :task => { :demo => @create_mockups.demo }
+    get :index, :task => { :demo => @create_mockups.demo }
     assert_equal [@create_mockups], assigns(:tasks)
   end
   
   test "should fetch tasks for a given owner" do
-    get :filter, :task => { :owner => @create_mockups.owner }
+    get :index, :task => { :owner => @create_mockups.owner }
     assert_equal [@create_mockups], assigns(:tasks)
   end
   
   test "should fetch tasks for a given demo & owner" do
-    get :filter, :task => { :demo => @create_data_model.demo, :owner => @create_data_model.owner }
+    get :index, :task => { :demo => @create_data_model.demo, :owner => @create_data_model.owner }
     assert_equal [@create_data_model], assigns(:tasks)
   end
 end

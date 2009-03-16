@@ -1,29 +1,26 @@
-<h1>New task</h1>
-
-<% form_for :task, Task.new, :url =>tasks_path do |f|%>
+<% form_for Task.new do |f|%>
    <%# TODO: dry up form fields -%>
    <%= f.text_field :description %>
    <%= f.text_field :owner %>
    <%= f.select :remaining, (1..10).to_a %>
    <%= f.date_select :demo %>
-   <button>Create</button>
+   <button>Create new task</button>
 <% end %>
 
 <hr/>
 
-<h1>Filter tasks</h1>
-<% form_for :task, :url => filter_tasks_path, :html => {:method => 'GET'} do |f| %>
-   <%= f.select :owner, @product.team %>
-   <%= f.select :demo, @product.demos %>
-   <button>Filter</button>
+<% form_tag tasks_path, :method => 'GET' do %>
+   <%= select_tag 'owner', owner_select_options(@product) %>
+   <%= select_tag 'demo',  demo_select_options(@product) %>
+   <button>Filter tasks</button>
 <% end %>
 
 <hr/>
 
 <h2 id='subtotal'>Subtotal: <%= @tasks.sum(:remaining) -%></h2>
 
-<% @tasks.each do |t| %>
-   <% form_for :task, t, :url => task_path(t), :html => { :method => 'PUT' } do |f|%>
+<% @tasks.each do |task| %>
+   <% form_for task do |f|%>
       <%= f.text_field :description %>
       <%= f.text_field :owner %>
       <%= f.select :remaining, (1..10).to_a %>
@@ -31,7 +28,8 @@
       <button>Save</button>
    <% end %>
    
-   <% form_for :task, t, :url => task_path(t), :html => { :method => 'DELETE' } do |f|%>
+   <%# TODO: refactor to RESTful task delete -%>
+   <% form_for :task, task, :url => task_path(task), :html => { :method => 'DELETE' } do |f|%>
       <button>Delete</button>
    <% end %>
 <% end %>

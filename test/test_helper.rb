@@ -23,13 +23,15 @@ class Test::Unit::TestCase
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
   self.use_instantiated_fixtures  = true
-
+  # OPTIMIZE: turn off instantiated fixtures
+  
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-
+  # OPTIMIZE: only load fixtures needed for each test case
+  
   # Add more helper methods to be used by all tests here...
 end
 

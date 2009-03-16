@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :features
   map.resources :sprints
-  map.resources :tasks, :collection => { :filter => :get }
+  map.resources :tasks
   
   map.root :controller => 'features'
   

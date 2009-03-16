@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
+  
   def index
-    @tasks = @product.tasks
+    @tasks = @product.tasks.filter(params[:task])
   end
   
   def destroy
@@ -16,10 +17,5 @@ class TasksController < ApplicationController
   def create
     @product.tasks.create! params[:task]
     redirect_to tasks_path
-  end
-  
-  def filter
-    @tasks = @product.tasks.filter(params[:task])
-    render :template => 'tasks/index'
   end
 end
