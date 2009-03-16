@@ -15,6 +15,20 @@ class FeaturesControllerIndexTest < ActionController::TestCase
   test "should find the products features" do
     assert_equal @scrumspace.features, assigns(:features)
   end
+  
+  test "should fetch all features if no demo passed" do
+    assert_equal @scrumspace.features, assigns(:features)
+  end
+  
+  test "should fetch all features if an invalid demo passed" do
+    get :index, :demo => 'Foo'
+    assert_equal @scrumspace.features, assigns(:features)
+  end
+  
+  test "should fetch features for a given demo" do
+    get :index, :demo => @create_feature.demo.to_s(:db)
+    assert_equal [@create_feature], assigns(:features)
+  end
 end
 
 class FeaturesControllerCreateTest < ActionController::TestCase
