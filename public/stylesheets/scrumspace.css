@@ -7,10 +7,9 @@ body, body * { font-size: 10pt; font-family: arial, verdana, sans-serif; }
 textarea { font-family: monospace; }
 
 /* Color */
-div.feature { height: 38%; }
-div.backlog { background-color: azure;  }
-div.started { background-color: lemonchiffon;  }
-div.done { background-color: palegreen;  }
+div.backlog { background-color: rgb(255,50,50);  }
+div.started { background-color: yellow;  }
+div.done { background-color: limegreen;  }
 div.feature.new { background-color: azure; }
 textarea { border: thin solid gainsboro; }
 
@@ -18,6 +17,8 @@ textarea { border: thin solid gainsboro; }
 body { min-width: 950px; }
 ol.nav li { display: inline; }
 textarea { padding: 0.6em; }
+
+div.feature { height: 38%; }
 
 .desc { width: 38%; height: 62%;  }
 .desc textarea { width: 100%; height: 80%; margin-bottom: 0.6em; }
