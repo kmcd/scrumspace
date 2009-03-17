@@ -2,7 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
   before_filter :find_product
   
   # See ActionController::RequestForgeryProtection for details

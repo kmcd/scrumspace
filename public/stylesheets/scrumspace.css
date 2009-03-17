@@ -7,10 +7,10 @@ body, body * { font-size: 10pt; font-family: arial, verdana, sans-serif; }
 textarea { font-family: monospace; }
 
 /* Color */
-div.backlog { background-color: rgb(255,50,50);  }
-div.started { background-color: yellow;  }
-div.done { background-color: limegreen;  }
-div.feature.new { background-color: azure; }
+div.backlog { background-color: azure;  }
+div.started { background-color: lemonchiffon;  }
+div.done { background-color: palegreen;  }
+div.feature.new { background-color: whitesmoke; }
 textarea { border: thin solid gainsboro; }
 
 /* Layout */
@@ -19,6 +19,7 @@ ol.nav li { display: inline; }
 textarea { padding: 0.6em; }
 
 div.feature { height: 38%; }
+.feature input[type='text'] { width: 10em; }
 
 .desc { width: 38%; height: 62%;  }
 .desc textarea { width: 100%; height: 80%; margin-bottom: 0.6em; }

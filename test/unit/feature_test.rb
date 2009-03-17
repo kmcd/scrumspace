@@ -22,7 +22,7 @@ class CreateFeatureTest < ActiveSupport::TestCase
   end
   
   test "should have a demo" do
-    assert @create_feature.demo.instance_of?(Date)
+    assert_instance_of Date, @create_feature.demo
   end
   
   test "should have a product" do
