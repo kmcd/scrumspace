@@ -6,12 +6,12 @@
       <%= javascript_include_tag 'prototype' %>
    </head>
    <%# TODO: refactor to a helper & test -%>
-   <body class="<%= [ controller.controller_name, action_name ].join ' ' -%>">
+   <body class="<%= controller.controller_name -%>">
       <ol id="nav">
          <li>CareerMee</li>
-         <li><a href='features'>Product Backlog</a></li>
-         <li><a href='tasks'>Sprint Backlog</a></li>
-         <li><a href='burndowns'>Burndown</a></li>
+         <li><%= link_to 'Product Backlog', features_path %></li>
+         <li><%= link_to 'Sprint Backlog', tasks_path %></li>
+         <li><%= link_to 'Burndowns', '#' %></li>
       </ol>
       <%= yield %>
    </body>

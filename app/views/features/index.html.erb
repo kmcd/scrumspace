@@ -14,7 +14,10 @@
 <div class='feature new'>
    <% form_for Feature.new do |f| %>
       <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
-      <span class='demo'>Demo (calendar): <%= f.date_select :demo %></span>
+      <span class='demo'>
+         Demo (<%= link_to 'calendar', '/calendar.html' -%>): 
+         <%= f.date_select :demo %>
+      </span>
       
       <%= f.text_area :description %>
       
@@ -30,7 +33,10 @@
    <div class="feature <%= @feature.status -%>">
       <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'PUT' } do |f| %>
          <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
-         <span class='demo'>Demo (calendar): <%= f.date_select :demo %></span>
+         <span class='demo'>
+            Demo (<%= link_to 'calendar', '/calendar.html' -%>): 
+            <%= f.date_select :demo %>
+         </span>
          
          <%= f.text_area :description %>
          
