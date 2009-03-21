@@ -3,37 +3,17 @@ body, body * { margin: 0; padding: 0; text-align: left; font-weight: normal }
 ol, ul { list-style-type: none; }
 
 /* Typography */
-body, body * { font-size: 10pt; font-family: arial, verdana, sans-serif; }
-textarea { font-family: monospace; }
+body, body * { font-size: 10pt; font-family: arial, helvetica, sans-serif; }
+textarea { font-family: courier, monospace;}
 
 /* Color */
-div.backlog { background-color: azure;  }
-div.started { background-color: lemonchiffon;  }
-div.done { background-color: palegreen;  }
-div.feature.new { background-color: whitesmoke; }
-textarea { border: thin solid gainsboro; }
+.backlog, .feature.new { background-color: azure; border: thin solid red;}
+.started { background-color: lemonchiffon;  }
+.done { background-color: palegreen;  }
+textarea { background-color: white; border: thin outset gray; }
+ol#nav { background-color: whitesmoke; }
 
 /* Layout */
 body { min-width: 950px; }
-ol.nav li { display: inline; }
-textarea { padding: 0.6em; }
-
-div.feature { height: 38%; }
-.feature input[type='text'] { width: 10em; }
-
-.desc { width: 38%; height: 62%;  }
-.desc textarea { width: 100%; height: 80%; margin-bottom: 0.6em; }
-
-.feature { position: relative; height: 24%; }
-.feature[class~="filter"] { position: relative; height: 9%; }
-
-.desc, .est, .date, .save, .delete { position: absolute; }
-.done { display: block; }
-
-.desc, .est, .date, .save { top: 19%; }
-.delete { top: 38%; }
-
-.desc { left: 9%; }
-.est {  left: 53%; }
-.date { left: 62%; }
-.save, .delete { left: 90%; }
+ol#nav { padding: 0.6em; }
+ol#nav li { display: inline; margin-right: 1.6em; }

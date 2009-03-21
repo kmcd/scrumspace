@@ -1,5 +1,4 @@
 class FeaturesController < ApplicationController
-  
   def index
     @features = @product.features.demo(params[:demo])
   end
