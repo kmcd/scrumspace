@@ -60,7 +60,7 @@
                 <text>calendar</text>
               </controlProperties>
             </control>
-            <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="65" y="0" w="39" h="-1" measuredW="40" measuredH="25" zOrder="6" locked="false" isInGroup="19">
+            <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="65" y="0" w="39" h="-1" measuredW="41" measuredH="25" zOrder="6" locked="false" isInGroup="19">
               <controlProperties>
                 <text>1</text>
               </controlProperties>
@@ -129,7 +129,7 @@
                 <text>calendar</text>
               </controlProperties>
             </control>
-            <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="65" y="0" w="39" h="-1" measuredW="40" measuredH="25" zOrder="6" locked="false" isInGroup="19">
+            <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="65" y="0" w="39" h="-1" measuredW="41" measuredH="25" zOrder="6" locked="false" isInGroup="19">
               <controlProperties>
                 <text>1</text>
               </controlProperties>
@@ -198,7 +198,7 @@
                 <text>calendar</text>
               </controlProperties>
             </control>
-            <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="65" y="0" w="39" h="-1" measuredW="40" measuredH="25" zOrder="6" locked="false" isInGroup="19">
+            <control controlID="12" controlTypeID="com.balsamiq.mockups::ComboBox" x="65" y="0" w="39" h="-1" measuredW="41" measuredH="25" zOrder="6" locked="false" isInGroup="19">
               <controlProperties>
                 <text>1</text>
               </controlProperties>

@@ -18,7 +18,7 @@ class TasksControllerDeleteTest < ActionController::TestCase
   tests TasksController
   
   def setup
-    delete :destroy, {:id => @create_mockups.id}
+    delete :destroy, :id => @create_mockups.id
   end
   
   test "should destroy the specified task" do

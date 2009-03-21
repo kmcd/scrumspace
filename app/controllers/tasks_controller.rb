@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @product.tasks.destroy(params[:id])
+    @product.tasks.find(params[:id]).destroy
     redirect_to tasks_path
   end
   

@@ -1,34 +1,27 @@
 <div class='feature filter'>
-   <div class='est'>
-      <p id='subtotal' class='estimate'>
-         <%= @features.inject(0) { |s,f| s += f.estimate } %>
-      </p>
-   </div>
-   <div class='date'>
-      <% form_tag features_path, :method => 'GET' do %>
+   <% form_tag features_path, :method => 'GET' do %>
+      <%= link_to 'Add feature to backlog', new_feature_path %>
+      
+      <span class='subtotal'>
+         <em id='subtotal'><%= @features.sum &:estimate %> </em>
+         remaining for
          <%= select_tag 'demo', demo_select_options(@product) %>
-         <button>Select demo</button>
-      <% end %>
-   </div>
+         <button>Filter</button>
+      </span>
+   <% end %>
 </div>
 
 <div class='feature new'>
    <% form_for Feature.new do |f| %>
-      <div class='desc'>
-         <%= f.text_area :description %>
-      </div>
+      <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
+      <span class='demo'>Demo (calendar): <%= f.date_select :demo %></span>
       
-      <div class='est'>
-         <%= f.select :estimate, (1..10).to_a %>
-      </div>
+      <%= f.text_area :description %>
       
-      <div class='date'>
-         <%= js_date_select :feature, :demo %>
-      </div>
-      
-      <div class='save'>
-         <button>Create</button>
-      </div>
+      <span class='buttons'>
+         <button>Save</button>
+         <button>Cancel</button>
+      </span>
    <% end %>
 </div>
 
@@ -36,32 +29,22 @@
    <%# FIXME: spec status css generation -%>
    <div class="feature <%= @feature.status -%>">
       <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'PUT' } do |f| %>
-         <div class='desc'>
-            <%= f.text_area :description %>
-            
+         <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
+         <span class='demo'>Demo (calendar): <%= f.date_select :demo %></span>
+         
+         <%= f.text_area :description %>
+         
+         <span class='status'>
             <% Feature::STATUS.each do |status| %>
                <%= f.radio_button :status, status %>
                <%= f.label :status, status %>
             <% end %>
-         </div>
+         </span>
          
-         <div class='est'>
-            <%= f.select :estimate, (1..10).to_a %>
-         </div>
-         
-         <div class='date'>
-            <%= f.date_select :demo %>
-         </div>
-      
-         <div class='save'>
+         <span class='buttons'>
             <button>Save</button>
-         </div>
-      <% end %>
-      
-      <div class='delete'>
-         <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'DELETE' } do |f| %>
             <button>Delete</button>
-         <% end %>
-      </div>
+         </span>
+      <% end %>
    </div>
 <% end %>
