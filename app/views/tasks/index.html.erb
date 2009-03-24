@@ -1,35 +1,41 @@
-<% form_for Task.new do |f|%>
+<div class='filter'>
+   <% form_tag tasks_path, :method => 'GET' do %>
+      <span class='new'><%= link_to_function('New task') {|p| p[:new_task].toggle } %></span>
+      <span class='criteria'>
+         <%# TODO: refactor to span(@tasks.sum(:remaining), :id => subtotal) -%>
+         <em id='subtotal'><%= @tasks.sum(:remaining) -%></em>
+         hours  for 
+         <%= select_tag 'owner', owner_select_options(@product) %>
+         to finish by
+         <%= select_tag 'demo',  demo_select_options(@product) %>
+         <button>Filter</button>
+      </span>
+   <% end %>
+</div>
+
+<% form_for Task.new, {}, :html => { :id => 'new_task' } do |f|%>
    <%# TODO: dry up form fields -%>
    <%= f.text_field :description %>
+   will take 
+   <%= f.select :remaining, (0..10).to_a %>
+   hours for
    <%= f.text_field :owner %>
-   <%= f.select :remaining, (1..10).to_a %>
-   <%= f.date_select :demo %>
-   <button>Create new task</button>
+   to finish by
+   <%= select_tag 'task[demo]',  demo_select_options(@product) %>
+   <button>Create</button>
+   <%= link_to_function("Hide") {|p| p[:new_task].hide } %>
 <% end %>
-
-<hr/>
-
-<% form_tag tasks_path, :method => 'GET' do %>
-   <%= select_tag 'owner', owner_select_options(@product) %>
-   <%= select_tag 'demo',  demo_select_options(@product) %>
-   <button>Filter tasks</button>
-<% end %>
-
-<hr/>
-
-<h2 id='subtotal'>Subtotal: <%= @tasks.sum(:remaining) -%></h2>
 
 <% @tasks.each do |task| %>
    <% form_for task do |f|%>
       <%= f.text_field :description %>
+      will take 
+      <%= f.select :remaining, (0..10).to_a %>
+      hours for
       <%= f.text_field :owner %>
-      <%= f.select :remaining, (1..10).to_a %>
-      <%= f.date_select :demo %>
+      to finish by
+      <%= select_tag 'feature[demo]',  demo_select_options(@product) %>
       <button>Save</button>
-   <% end %>
-   
-   <%# TODO: refactor to RESTful task delete -%>
-   <% form_for :task, task, :url => task_path(task), :html => { :method => 'DELETE' } do |f|%>
-      <button>Delete</button>
+      <%= link_to_remote 'Delete', :url => task_path(task), :method => :delete %>
    <% end %>
 <% end %>
