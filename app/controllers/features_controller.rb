@@ -15,6 +15,9 @@ class FeaturesController < ApplicationController
   
   def destroy
     @product.features.find(params[:id]).destroy
-    redirect_to features_path
+    respond_to do |format|
+      format.html { redirect_to features_path }
+      format.js   { render }
+    end
   end
 end

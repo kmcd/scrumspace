@@ -1,5 +1,9 @@
 require 'test_helper'
 
+def each_feature
+  @scrumspace.features.each { |f| yield f }
+end
+
 #  REST actions: new, create, delete, index
 class FeaturesViewIndexTest < ActionController::TestCase
   tests FeaturesController
@@ -8,16 +12,13 @@ class FeaturesViewIndexTest < ActionController::TestCase
     get :index
   end
   
-  def each_feature
-    @scrumspace.features.each { |f| yield f }
-  end
-  
   test "should have a form to create a new feature" do
     assert_select "form[action=/features][method=?]", /post/i
   end
   
   test "should have a form to update each existing feature" do
-    each_feature do |f| 
+    each_feature do |f|
+      assert_select "div[id=feature_#{f.id}]"
       assert_select "form[action=/features/#{f.id}] input[value='PUT']" 
     end
   end
@@ -43,13 +44,24 @@ class FeaturesViewIndexTest < ActionController::TestCase
   test "should have an subtotal of all estimations" do
     assert_select "#subtotal", :text => /#{@scrumspace.features.sum(:estimate)}/
   end
+end
+
+class FeaturesDeleteTest < ActionController::TestCase
+  tests FeaturesController
   
   test "should have a delete form for each feature" do
+    get :index
+    
     each_feature do |f|
-      # FIXME: implement the delete link/submit to remote
-      # assert_select "form[action=/features/#{f.id}] input[value=?]", /delete/i
-      # assert_select "form[action=/features/#{f.id}] button", /Delete/
+      assert_select "form[action=/features/#{f.id}] .buttons a", /Delete/
     end
+  end
+  
+  test "should remove delete" do
+    xhr :delete, :destroy, :id => @prioritise_features.id
+    # TODO: investigate why "$(\"feature_682820712\").hide();" is not asserting correctly
+    # puts @response.body.inspect
+    # assert_select_rjs :hide, "feature_#{@prioritise_features.id}"
   end
 end
 

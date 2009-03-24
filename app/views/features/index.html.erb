@@ -1,6 +1,6 @@
 <div class='feature filter'>
    <% form_tag features_path, :method => 'GET' do %>
-      <%= link_to 'Add feature to backlog', new_feature_path %>
+   <%= link_to_function('Add feature to backlog') {|p| p[:new].toggle } %>
       
       <span class='subtotal'>
          <em id='subtotal'><%= @features.sum &:estimate %> </em>
@@ -11,45 +11,46 @@
    <% end %>
 </div>
 
-<div class='feature new'>
+<div id='new' class='feature new' style='display: none-;'>
    <% form_for Feature.new do |f| %>
-      <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
+      <%# TODO: dry up with update -%>
+      <span class='estimate'>Estimate : <%= f.select :estimate, (1..15).to_a %></span>
       <span class='demo'>
-         Demo (<%= link_to 'calendar', '/calendar.html' -%>): 
+         Demo (<%= link_to 'calendar', '/calendar.html' -%>) : 
          <%= f.date_select :demo %>
       </span>
       
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :value => "In order to \nAs a \nI should" %>
       
       <span class='buttons'>
-         <button>Save</button>
-         <button>Cancel</button>
+         <button>Add feature to backlog</button>
+         <%= link_to_function('Maybe later') {|p| p[:new].toggle } %>
       </span>
    <% end %>
 </div>
 
 <% @features.each do |@feature| %>
-   <%# FIXME: spec status css generation -%>
-   <div class="feature <%= @feature.status -%>">
+   <div class="feature <%= @feature.status.downcase -%>" id="feature_<%= @feature.id %>">
       <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'PUT' } do |f| %>
-         <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
+         <span class='estimate'>Estimate : <%= f.select :estimate, (1..15).to_a %></span>
          <span class='demo'>
-            Demo (<%= link_to 'calendar', '/calendar.html' -%>): 
+            Demo (<%= link_to 'calendar', '/calendar.html' -%>) : 
             <%= f.date_select :demo %>
          </span>
-         
+      
          <%= f.text_area :description %>
          
          <span class='status'>
+            Feature is currently 
             <% Feature::STATUS.each do |status| %>
                <%= f.radio_button :status, status %>
-               <%= f.label :status, status %>
+               <%= f.label :status, status.downcase %>
             <% end %>
          </span>
          
          <span class='buttons'>
             <button>Save</button>
-            <button>Delete</button>
+            <%= link_to_remote 'Delete', :url => feature_url(@feature), :method => :delete %>
          </span>
       <% end %>
    </div>
