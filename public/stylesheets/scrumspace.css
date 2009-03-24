@@ -32,7 +32,7 @@ a { color: blue; }
 
 .buttons a { color: red; }
 .feature.new .buttons a { color: blue; }
-.tasks form { background-color: lemonchiffon; }
+.tasks form.task { background-color: lemonchiffon; }
 .tasks form.new_task { border: thin outset whitesmoke; background-color: whitesmoke; }
 
 /*********************************** Layout */

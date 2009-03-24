@@ -21,21 +21,23 @@
    hours for
    <%= f.text_field :owner %>
    to finish by
-   <%= select_tag 'task[demo]',  demo_select_options(@product) %>
+   <%= f.select :demo, @product.demos %>
    <button>Create</button>
    <%= link_to_function("Hide") {|p| p[:new_task].hide } %>
 <% end %>
 
 <% @tasks.each do |task| %>
-   <% form_for task do |f|%>
+   <% form_for task, {}, :html => { :class => "task", :id => "task_#{task.id}" } do |f|%>
       <%= f.text_field :description %>
       will take 
       <%= f.select :remaining, (0..10).to_a %>
       hours for
       <%= f.text_field :owner %>
       to finish by
-      <%= select_tag 'feature[demo]',  demo_select_options(@product) %>
-      <button>Save</button>
-      <%= link_to_remote 'Delete', :url => task_path(task), :method => :delete %>
+      <%= f.select :demo, @product.demos %>
+      <span class='buttons'>
+         <button>Save</button>
+         <%= link_to_remote 'Delete', :url => task_path(task), :method => :delete %>
+      </span>
    <% end %>
 <% end %>

@@ -1,0 +1,3 @@
+page["task_#{params[:id]}"].remove
+
+# TODO: update subtotal & test

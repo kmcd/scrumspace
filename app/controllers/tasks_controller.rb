@@ -6,7 +6,10 @@ class TasksController < ApplicationController
   
   def destroy
     @product.tasks.find(params[:id]).destroy
-    redirect_to tasks_path
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.js   { render }
+    end
   end
   
   def update
