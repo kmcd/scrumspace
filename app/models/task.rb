@@ -14,10 +14,10 @@ class Task < ActiveRecord::Base
   private
   
   def self.demo?(task)
-    task && task[:demo]
+    task && task[:demo] && task[:demo] !~ /all/i
   end
   
   def self.owner?(task)
-    task && task[:owner]
+    task && task[:owner] && task[:owner] !~ /all/i
   end
 end

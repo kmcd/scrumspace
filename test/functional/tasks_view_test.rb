@@ -72,7 +72,7 @@ class TasksViewFilterTest < ActionController::TestCase
   
   test "should be able to filter tasks by owner" do
     assert_task_filter do
-      assert_select "select[name=owner]" do
+      assert_selec "select[name=owner]" do
         assert_select "option", /all/i
         @scrumspace.team.each {|member| assert_select "option", /#{member}/i }
       end
@@ -86,6 +86,10 @@ class TasksViewFilterTest < ActionController::TestCase
         @scrumspace.demos.each {|date| assert_select "option", /#{date}/i }
       end
     end
+  end
+  
+  test "should have filter parameters selected" do
+    # Pending
   end
   
   def assert_task_filter

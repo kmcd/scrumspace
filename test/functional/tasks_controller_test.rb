@@ -74,17 +74,17 @@ class TasksControllerFilterTest < ActionController::TestCase
   end
   
   test "should fetch tasks for a given demo" do
-    get :index, :task => { :demo => @create_mockups.demo }
+    get :index, { :demo => @create_mockups.demo }
     assert_equal [@create_mockups], assigns(:tasks)
   end
   
   test "should fetch tasks for a given owner" do
-    get :index, :task => { :owner => @create_mockups.owner }
+    get :index, { :owner => @create_mockups.owner }
     assert_equal [@create_mockups], assigns(:tasks)
   end
   
   test "should fetch tasks for a given demo & owner" do
-    get :index, :task => { :demo => @create_data_model.demo, :owner => @create_data_model.owner }
+    get :index, { :demo => @create_data_model.demo, :owner => @create_data_model.owner }
     assert_equal [@create_data_model], assigns(:tasks)
   end
 end

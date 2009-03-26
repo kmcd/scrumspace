@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   
   def index
-    @tasks = @product.tasks.filter(params[:task])
+    @tasks = @product.tasks.filter(params)
   end
   
   def destroy

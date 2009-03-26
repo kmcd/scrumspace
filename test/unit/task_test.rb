@@ -46,4 +46,9 @@ class TaskFilterTest < ActiveSupport::TestCase
     assert_equal @scrumspace.tasks, @scrumspace.tasks.filter
     assert_equal @scrumspace.tasks, @scrumspace.tasks.filter(nil)
   end
+  
+  test "should show all demos/owners" do
+    assert_equal @scrumspace.tasks, @scrumspace.tasks.filter(:demo  => 'all')
+    assert_equal @scrumspace.tasks, @scrumspace.tasks.filter(:owner => 'all')
+  end
 end
