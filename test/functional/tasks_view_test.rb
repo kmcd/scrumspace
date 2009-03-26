@@ -65,13 +65,13 @@ class TasksViewFilterTest < ActionController::TestCase
   # </form>
   
   test "should have a task filter" do
-    assert_select("form[action=/tasks][method=?]", /get/i) do
+    assert_task_filter do
       assert_select "button", /filter/i
     end
   end
   
   test "should be able to filter tasks by owner" do
-    assert_select("form[action=/tasks][method=?]", /get/i) do
+    assert_task_filter do
       assert_select "select[name=owner]" do
         assert_select "option", /all/i
         @scrumspace.team.each {|member| assert_select "option", /#{member}/i }
@@ -80,12 +80,16 @@ class TasksViewFilterTest < ActionController::TestCase
   end
   
   test "should be able to filter tasks by existing demo" do
-    assert_select("form[action=/tasks][method=?]", /get/i) do
+    assert_task_filter do
       assert_select "select[name=demo]" do
         assert_select "option", /all/i
         @scrumspace.demos.each {|date| assert_select "option", /#{date}/i }
       end
     end
+  end
+  
+  def assert_task_filter
+    assert_select("form[action=/tasks][method=?]", /get/i)
   end
 end
 
