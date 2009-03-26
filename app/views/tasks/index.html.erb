@@ -5,7 +5,7 @@
          <%# TODO: refactor to span(@tasks.sum(:remaining), :id => subtotal) -%>
          <em id='subtotal'><%= @tasks.sum(:remaining) -%></em>
          hours  for 
-         <%= select_tag 'owner', owner_select_options(@product) %>
+         <%= select_tag 'owner', team_select_options(@product) %>
          to finish by
          <%= select_tag 'demo',  demo_select_options(@product) %>
          <button>Filter</button>

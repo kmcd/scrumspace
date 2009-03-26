@@ -1,13 +1,12 @@
 module TasksHelper
-  def owner_select_options(product)
-    ['All people'].push(product.team).flatten.map do |demo|
-      "<option>#{demo}</option>" 
-    end.to_s
+  # TODO: dry up these helpers
+  def team_select_options(product)
+    prompt =  options_for_select("All people") 
+    prompt += options_from_collection_for_select(product.team, :dup , :dup, params[:owner])
   end
   
   def demo_select_options(product)
-    ['All demos'].push(product.demos).flatten.map do |demo|
-      "<option>#{demo}</option>" 
-    end.to_s
+    prompt =  options_for_select("All demos") 
+    prompt += options_from_collection_for_select(product.demos, :dup , :dup, params[:demo])
   end
 end
