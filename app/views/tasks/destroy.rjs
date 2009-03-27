@@ -1,3 +1,5 @@
-page["task_#{params[:id]}"].remove
+# Remove the task
+page.visual_effect :fade, "task_#{params[:id]}"
 
-# TODO: update subtotal & test
+# TODO: update subtotal
+update_subtotal_on page

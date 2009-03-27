@@ -1,0 +1,7 @@
+page.insert_html :top, 'tasks', :partial => 'task'
+page.visual_effect :highlight, "task_#{@task.id}"
+
+# Update subtotal
+update_subtotal_on page
+
+# Update people list

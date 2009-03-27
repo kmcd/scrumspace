@@ -13,4 +13,8 @@ module TasksHelper
   def task_demos(product)
     product.demos.map {|d| [d.to_f, d] }
   end
+  
+  def update_subtotal_on(page)
+    page.replace_html 'subtotal', @product.tasks.sum(:remaining).to_s
+  end
 end
