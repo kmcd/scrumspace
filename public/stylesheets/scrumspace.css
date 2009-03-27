@@ -17,7 +17,8 @@ a:hover { text-decoration: underline; }
 
 body { color: dimgray; }
 em { color: black; }
-textarea { background-color: white; border: thin outset gray; }
+textarea { border: none; background-color: inherit; }
+textarea:focus { background-color: white; border: thin outset gray; }
 a { color: blue; }
 
 #nav { background-color: whitesmoke; }
@@ -33,7 +34,6 @@ a { color: blue; }
 .buttons a { color: red; }
 .feature.new .buttons a { color: blue; }
 .tasks form.task { background-color: lemonchiffon; }
-.tasks form.new_task { border: thin outset whitesmoke; background-color: whitesmoke; }
 
 /*********************************** Layout */
 

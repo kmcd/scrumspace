@@ -13,7 +13,7 @@
    <% end %>
 </div>
 
-<% form_for Task.new, {}, :html => { :id => 'new_task' } do |f|%>
+<% form_for Task.new, {}, :html => { :id => 'new_task', :style => 'display: none;' } do |f|%>
    <%# TODO: dry up form fields -%>
    <%= f.text_field :description %>
    will take 
@@ -21,7 +21,7 @@
    hours for
    <%= f.text_field :owner %>
    to finish by
-   <%= f.select :demo, @product.demos %>
+   <%= f.select :demo, task_demos(@product) %>
    <button>Create</button>
    <%= link_to_function("Hide") {|p| p[:new_task].hide } %>
 <% end %>
@@ -34,7 +34,7 @@
       hours for
       <%= f.text_field :owner %>
       to finish by
-      <%= f.select :demo, @product.demos %>
+      <%= f.select :demo, task_demos(@product) %>
       <span class='buttons'>
          <button>Save</button>
          <%= link_to_remote 'Delete', :url => task_path(task), :method => :delete %>

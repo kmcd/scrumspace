@@ -83,7 +83,8 @@ class TasksViewFilterTest < ActionController::TestCase
     assert_task_filter do
       assert_select "select[name=demo]" do
         assert_select "option", /all/i
-        @scrumspace.demos.each {|date| assert_select "option", /#{date}/i }
+        @scrumspace.demos.each {|date| assert_select "option[value=?]", /#{date}/i }
+        @scrumspace.demos.each {|date| assert_select "option", date.to_f }
       end
     end
   end
