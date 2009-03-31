@@ -4,19 +4,26 @@
 class ApplicationController < ActionController::Base
   before_filter :find_product
   
+  filter_parameter_logging :password, :password_confirmation
+  helper_method :current_account_session, :current_account
+  
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '893338604f8f573566ad0ba4b9258249'
   
-  # See ActionController::Base for details 
-  # Uncomment this to filter the contents of submitted sensitive data parameters
-  # from your application log (in this case, all fields with names like "password"). 
-  # filter_parameter_logging :password
-  
   private
   
+  def current_account_session
+    return @current_account_session if defined?(@current_account_session)
+    @current_account_session = UserSession.find
+  end
+
+  def current_account
+    return @current_account if defined?(@current_account)
+    @current_account = current_account_session && current_account_session.user
+  end
+  
   def find_product
-    # FIXME: should assign from logged in account
-    @product = Product.find_by_name("scrumspace")
+    @product = Product.find_by_name(request.subdomains.first)
   end
 end
