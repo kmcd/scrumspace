@@ -1,8 +1,22 @@
 require 'test_helper'
 
+def assert_invalid(&blk)
+  assert_raise(ActiveRecord::RecordInvalid) { blk.call }
+end
+
 class ProductTest < ActiveSupport::TestCase
-  test "should have a name" do
+  RESERVED_NAMES = %w( support blog www billing help api )
+  
+  test "should have a unique name" do
     assert_equal 'scrumspace', @scrumspace.name
+    assert_invalid { @scrumspace.update_attributes! :name => '' }
+    assert_invalid { Product.create! :name => @scrumspace.name }
+  end
+  
+  test "should not allow #{RESERVED_NAMES.join(',')} product names" do
+    RESERVED_NAMES.each do |name|
+      assert_invalid { @scrumspace.update_attributes! :name => name }
+    end
   end
   
   test "should have features" do
