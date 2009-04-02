@@ -1,10 +1,9 @@
 <% remote_form_for task, {}, :html => { :class => "task", :id => "task_#{task.id}" } do |f|%>
    <%= f.text_field :description %>
    will take 
-   <%= f.select :remaining, (0..10).to_a %>
-   hours for
    <%= f.text_field :owner %>
-   to finish by
+   <%= f.select :remaining, (0..10).to_a %>
+   hours to finish for
    <%= f.select :demo, task_demos(@product) %>
    <span class='buttons'>
       <button>Save</button>

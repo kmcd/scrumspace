@@ -1,29 +1,26 @@
-<div class='filter'>
+<div class='filter <%= 'empty' if blank_slate? %>'>
    <% form_tag tasks_path, :method => 'GET' do %>
       <span class='new'><%= link_to_function('New task') {|p| p[:new_task].toggle } %></span>
       <span class='criteria'>
-         <%# TODO: refactor to span(@tasks.sum(:remaining), :id => subtotal) -%>
-         <em id='subtotal'><%= @tasks.sum(:remaining) -%></em>
-         hours  for 
          <%= select_tag 'owner', team_select_options(@product) %>
-         to finish by
+         has
+         <em id='subtotal'><%= @tasks.sum(:remaining) -%></em>
+         hours remaining for
          <%= select_tag 'demo',  demo_select_options(@product) %>
          <button>Filter</button>
       </span>
    <% end %>
 </div>
 
-<% remote_form_for Task.new, {}, :html => { :id => 'new_task', :style => 'display: none;' } do |f|%>
-   <%# TODO: dry up form fields -%>
-   <%= f.text_field :description %>
+<% remote_form_for Task.new, {}, :html => { :id => 'new_task', :style => new_task_visability } do |f|%>
+   <%= f.text_field :description, :value => '[TASK DESCRIPTION]' %>
    will take 
+   <%= f.text_field :owner, :value => '[PERSON]' %>
    <%= f.select :remaining, (0..10).to_a %>
-   hours for
-   <%= f.text_field :owner %>
-   to finish by
+   hours to finish for
    <%= f.select :demo, task_demos(@product) %>
    <button>Create</button>
-   <%= link_to_function("Hide") {|p| p[:new_task].hide } %>
+   <%= link_to_function("Hide") {|p| p[:new_task].hide } unless blank_slate? %>
 <% end %>
 
 <div id='tasks'>

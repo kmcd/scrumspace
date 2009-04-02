@@ -55,6 +55,7 @@ ol#nav li { display: inline; margin-right: 1.6em; }
 .tasks input[name='task\[owner\]'] { width: 9%; }
 .tasks input[name='task\[description\]'] { width: 38%; }
 .tasks input[type='text'] { padding: 2.5px; }
+.tasks .filter.empty { display: none; }
 .tasks .filter { margin-bottom: 4em; }
 .tasks .filter form { overflow: hidden; }
 .tasks .filter a { float: left; }
