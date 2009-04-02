@@ -9,10 +9,9 @@
    <%# TODO: refactor to a helper & test -%>
    <body class="<%= controller.controller_name -%>">
       <ol id="nav">
-         <li>CareerMee</li>
+         <li><%= @product.name %></li>
          <li><%= link_to 'Product Backlog', features_path %></li>
          <li><%= link_to 'Sprint Backlog', tasks_path %></li>
-         <li><%= link_to 'Burndown', '#' %></li>
       </ol>
       <%= yield %>
    </body>

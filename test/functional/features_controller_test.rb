@@ -1,12 +1,6 @@
 require 'test_helper'
 
-class FeaturesControllerIndexTest < ActionController::TestCase
-  tests FeaturesController
-  
-  def setup
-    get :index
-  end
-  
+class FeaturesControllerIndexTest < FeatureFunctionalTest
   test "have an index page" do
     assert_response :success
     assert_template 'index'
@@ -31,10 +25,9 @@ class FeaturesControllerIndexTest < ActionController::TestCase
   end
 end
 
-class FeaturesControllerCreateTest < ActionController::TestCase
-  tests FeaturesController
-  
+class FeaturesControllerCreateTest < FeatureFunctionalTest
   def setup
+    stub_product
     post :create, :feature => {:description => 'foo'}
   end
   
@@ -47,10 +40,9 @@ class FeaturesControllerCreateTest < ActionController::TestCase
   end
 end
 
-class FeaturesControllerUpdateTest < ActionController::TestCase
-  tests FeaturesController
-  
+class FeaturesControllerUpdateTest < FeatureFunctionalTest
   def setup
+    stub_product
     put :update, :id => @prioritise_features.id, :feature => {:description => 'foo'}
   end
   
@@ -63,10 +55,10 @@ class FeaturesControllerUpdateTest < ActionController::TestCase
   end
 end
 
-class FeaturesControllerDeleteTest < ActionController::TestCase
-  tests FeaturesController
+class FeaturesControllerDeleteTest < FeatureFunctionalTest
   
   def setup
+    stub_product
     post :destroy, :id => @prioritise_features.id
   end
   

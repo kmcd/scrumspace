@@ -6,14 +6,7 @@ require 'test_helper'
 #     flunk
 #   end
 # end
-class TasksViewIndexTest < ActionController::TestCase
-  tests TasksController
-  include TasksTestHelper
-  
-  def setup
-    get :index
-  end
-  
+class TasksViewIndexTest < TaskFunctionalTest
   test "should have an update form for each task" do
     each_task do |t|
       assert_select(task_form(t) + "input[value=?]", /put/i )
@@ -51,13 +44,7 @@ class TasksViewIndexTest < ActionController::TestCase
   end
 end
 
-class TasksViewFilterTest < ActionController::TestCase
-  tests TasksController
-  
-  def setup
-    get :index
-  end
-
+class TasksViewFilterTest < TaskFunctionalTest
   # <form action="/tasks" method="get">
   #    <select name="owner"><option>All</option><option>2009-03-16</option> ... <select>
   #    <select name="demo"><option>All</option><option>2009-03-16</option> ... </select>
@@ -112,14 +99,7 @@ class TasksViewFilterTest < ActionController::TestCase
   end
 end
 
-class TasksViewCreateTest < ActionController::TestCase
-  tests TasksController
-  include TasksTestHelper
-  
-  def setup
-    get :index
-  end
-  
+class TasksViewCreateTest < TaskFunctionalTest
   test "should have a form to create a new task" do
     assert_select "form[action=/tasks]"
   end

@@ -1,0 +1,17 @@
+<p><%= flash[:notice] %><p>
+
+<% form_for Session.new do |f| %>
+   <%= f.error_messages %>
+   
+   <p>http://<%= text_field_tag :product, request.subdomains[0] %>.scrumspace.com</p>
+   
+   <%= f.label :login %><br />
+   <%= f.text_field :login %><br />
+   <br />
+
+   <%= f.label :password %><br />
+   <%= f.password_field :password %><br />
+   <br />
+
+   <%= f.submit "Login" %>
+<% end %>

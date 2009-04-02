@@ -1,10 +1,6 @@
 require 'test_helper'
 
-class TasksControllerTest < ActionController::TestCase
-  def setup
-    get :index
-  end
-  
+class IndexControllerTest < TaskFunctionalTest
   test "should have an index" do
     assert_response :success
   end
@@ -14,10 +10,9 @@ class TasksControllerTest < ActionController::TestCase
   end
 end
 
-class TasksControllerDeleteTest < ActionController::TestCase
-  tests TasksController
-  
+class TasksControllerDeleteTest < TaskFunctionalTest
   def setup
+    stub_product
     delete :destroy, :id => @create_mockups.id
   end
   
@@ -32,10 +27,10 @@ class TasksControllerDeleteTest < ActionController::TestCase
   end
 end
 
-class TasksControllerUpdateTest < ActionController::TestCase
-  tests TasksController
+class TasksControllerUpdateTest < TaskFunctionalTest
   
   def setup
+    stub_product
     put :update, {:id => @create_mockups.id, :task => {:description => 'foo'}}
   end
   
@@ -48,10 +43,9 @@ class TasksControllerUpdateTest < ActionController::TestCase
   end
 end
 
-class TasksControllerCreateTest < ActionController::TestCase
-  tests TasksController
-  
+class TasksControllerCreateTest < TaskFunctionalTest
   def setup
+    stub_product
     post :create, :task => {:description => 'foo'}
   end
   
@@ -64,11 +58,8 @@ class TasksControllerCreateTest < ActionController::TestCase
   end
 end
 
-class TasksControllerFilterTest < ActionController::TestCase
-  tests TasksController
-  
+class TasksControllerFilterTest < TaskFunctionalTest
   test "should render the default template" do
-    get :index
     assert_response :success
     assert_template 'tasks/index'
   end

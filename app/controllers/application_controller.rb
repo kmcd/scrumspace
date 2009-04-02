@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   
   private
   
+  # TODO: refactor 
   def current_account_session
     return @current_account_session if defined?(@current_account_session)
     @current_account_session = UserSession.find
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
   end
   
   def find_product
-    @product = Product.find_by_name(request.subdomains.first)
+    @product ||= Product.find_by_name(request.subdomains.first)
+  end
+  
+  def product_url(name)
+    request.host.sub /^\w*\.*(scrumspace)/, "#{name}.\\1"
   end
 end

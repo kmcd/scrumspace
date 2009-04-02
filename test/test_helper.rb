@@ -2,6 +2,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require 'redgreen'
+require 'mocha'
+Dir.glob(File.join(File.dirname(__FILE__), '../test/helpers/*.rb')).each {|f| require f }
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -33,22 +35,4 @@ class ActiveSupport::TestCase
   # OPTIMIZE: only load fixtures needed for each test case
   
   # Add more helper methods to be used by all tests here...
-end
-
-module TasksTestHelper
-  private
-  
-  def each_task
-    @scrumspace.tasks.each {|t| yield t }
-  end
-  
-  def task_form(t)
-    "form[action=/tasks/#{t.id}] "
-  end
-  
-  def assert_task_field(form_field, actual=nil)
-    each_task do |t|
-      assert_select "#{task_form(t)} #{form_field}", actual
-    end
-  end
 end

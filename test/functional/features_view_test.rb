@@ -1,17 +1,7 @@
 require 'test_helper'
 
-def each_feature
-  @scrumspace.features.each { |f| yield f }
-end
-
 #  REST actions: new, create, delete, index
-class FeaturesViewIndexTest < ActionController::TestCase
-  tests FeaturesController
-  
-  def setup
-    get :index
-  end
-  
+class FeaturesViewIndexTest < FeatureFunctionalTest
   test "should have a form to create a new feature" do
     assert_select "form[action=/features][method=?]", /post/i
   end
@@ -46,18 +36,15 @@ class FeaturesViewIndexTest < ActionController::TestCase
   end
 end
 
-class FeaturesDeleteTest < ActionController::TestCase
-  tests FeaturesController
-  
+class FeaturesDeleteTest < FeatureFunctionalTest
   test "should have a delete form for each feature" do
-    get :index
-    
     each_feature do |f|
       assert_select "form[action=/features/#{f.id}] .buttons a", /Delete/
     end
   end
   
   test "should remove delete" do
+    stub_product
     xhr :delete, :destroy, :id => @prioritise_features.id
     # TODO: investigate why "$(\"feature_682820712\").hide();" is not asserting correctly
     # puts @response.body.inspect
@@ -65,18 +52,13 @@ class FeaturesDeleteTest < ActionController::TestCase
   end
 end
 
-class FeaturesViewIndexSprintSelectionTest < ActionController::TestCase
-  tests FeaturesController
+class FeaturesViewIndexSprintSelectionTest < FeatureFunctionalTest
   
   # <form action="/features" method="get">
   #    <select id="demo" name="demo"><option>All</option><option>2009-03-16</option> ... </select>
   #    <button>Select demo</button>
   # </form>
 
-  def setup
-    get :index
-  end
-  
   test "should be able to select all features" do
     assert_select("form[action=/features][method=?]", /get/i) do
       assert_select "button", /\w+/
