@@ -1,4 +1,4 @@
-<div class='feature filter'>
+<div class='feature filter <%= 'empty' if blank_slate? %>'>
    <% form_tag features_path, :method => 'GET' do %>
    <%= link_to_function('Add feature to backlog') {|p| p[:new].toggle } %>
       
@@ -11,22 +11,23 @@
    <% end %>
 </div>
 
-<div id='new' class='feature new' style='display: none-;'>
+<div id='new' class='feature new'>
    <% form_for Feature.new do |f| %>
       <%# TODO: dry up with update -%>
-      <span class='estimate'>Estimate : <%= f.select :estimate, (1..15).to_a %></span>
+      <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
       <span class='demo'>
-         Demo (<%= link_to 'calendar', '/calendar.html' -%>) : 
+         Demo (<%= link_to 'calendar', '/calendar.html' -%>) 
          <%= f.date_select :demo %>
       </span>
       
-      <%= f.text_area :description, :value => "In order to \nAs a \nI should" %>
+      <%= f.text_area :description, :value => blank_user_story, :id => 'new_user_story' %>
       
       <span class='buttons'>
          <button>Add feature to backlog</button>
-         <%= link_to_function('Hide') {|p| p[:new].toggle } %>
+         <%= link_to_function('Hide') {|p| p[:new].toggle } unless blank_slate? %>
       </span>
    <% end %>
+   <%= set_focus 'new_user_story' %>
 </div>
 
 <% @features.each do |@feature| %>
@@ -34,14 +35,13 @@
       <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'PUT' } do |f| %>
          <span class='estimate'>Estimate : <%= f.select :estimate, (1..15).to_a %></span>
          <span class='demo'>
-            Demo (<%= link_to 'calendar', '/calendar.html' -%>) : 
+            Demo (<%= link_to 'calendar', '/calendar.html' -%>) 
             <%= f.date_select :demo %>
          </span>
       
          <%= f.text_area :description %>
          
          <span class='status'>
-            Feature is currently 
             <% Feature::STATUS.each do |status| %>
                <%= f.radio_button :status, status %>
                <%= f.label :status, status.downcase %>

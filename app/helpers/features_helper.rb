@@ -5,4 +5,12 @@ module FeaturesHelper
       "<option>#{demo}</option>" 
     end.to_s
   end
+  
+  def blank_user_story
+    "In order to \nAs a \nI should" 
+  end
+  
+  def blank_slate?
+    @features.empty?
+  end
 end

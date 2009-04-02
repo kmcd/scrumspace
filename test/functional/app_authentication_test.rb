@@ -1,7 +1,7 @@
 require 'test_helper'
 
-# TODO: fill in these stubs
 def assert_valid_login
+  # TODO: fill in these stubs
   test "should require a valid login" do
   end
   
