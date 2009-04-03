@@ -1,6 +1,6 @@
 <div class='feature filter <%= 'empty' if blank_slate? %>'>
    <% form_tag features_path, :method => 'GET' do %>
-   <%= link_to_function('Add feature to backlog') {|p| p[:new].toggle } %>
+   <%= link_to_function('New feature') {|p| p[:new].toggle } %>
       
       <span class='subtotal'>
          <em id='subtotal'><%= @features.sum &:estimate %> </em>
@@ -11,7 +11,7 @@
    <% end %>
 </div>
 
-<div id='new' class='feature new'>
+<div id='new' class='feature new' style='<%= new_feature_visability %>'>
    <% form_for Feature.new do |f| %>
       <%# TODO: dry up with update -%>
       <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
@@ -24,7 +24,7 @@
       
       <span class='buttons'>
          <button>Add feature to backlog</button>
-         <%= link_to_function('Hide') {|p| p[:new].toggle } unless blank_slate? %>
+         <%= new_feature_link %>
       </span>
    <% end %>
    <%= set_focus 'new_user_story' %>
@@ -33,7 +33,7 @@
 <% @features.each do |@feature| %>
    <div class="feature <%= @feature.status.downcase -%>" id="feature_<%= @feature.id %>">
       <% form_for :feature, :url => feature_path(@feature), :html => {:method => 'PUT' } do |f| %>
-         <span class='estimate'>Estimate : <%= f.select :estimate, (1..15).to_a %></span>
+         <span class='estimate'>Estimate <%= f.select :estimate, (1..15).to_a %></span>
          <span class='demo'>
             Demo (<%= link_to 'calendar', '/calendar.html' -%>) 
             <%= f.date_select :demo %>

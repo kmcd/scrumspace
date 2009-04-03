@@ -1,8 +1,9 @@
 class TaskFunctionalTest < ActionController::TestCase
   tests TasksController
-    
+  setup :activate_authlogic
+  
   def setup
-    stub_product
+    login_with @keith
     get :index
   end
   

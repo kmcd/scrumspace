@@ -60,7 +60,7 @@ class TasksViewFilterTest < TaskFunctionalTest
   test "should be able to filter tasks by owner" do
     assert_task_filter do
       assert_select "select[name=owner]" do
-        assert_select "option", /all/i
+        assert_select "option", /everyone/i
         @scrumspace.team.each {|member| assert_select "option", /#{member}/i }
       end
     end

@@ -1,17 +1,36 @@
-<p><%= flash[:notice] %><p>
-
-<% form_for Session.new do |f| %>
-   <%= f.error_messages %>
-   
-   <p>http://<%= text_field_tag :product, request.subdomains[0] %>.scrumspace.com</p>
-   
-   <%= f.label :login %><br />
-   <%= f.text_field :login %><br />
-   <br />
-
-   <%= f.label :password %><br />
-   <%= f.password_field :password %><br />
-   <br />
-
-   <%= f.submit "Login" %>
-<% end %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+      <style type='text/css'>
+         body { background-color: whitesmoke; color: grey; font-family: arial, sans-serif; }
+         form fieldset {
+            border: thin outset whitesmoke;
+            background-color: white;
+            margin: 15% auto; 
+            width: 38%; 
+            padding: 1.6em;
+         }
+         legend { color: black; font-size: 2.4em; }
+         label { clear: both; float: left; width: 6em; margin-bottom: 1em; }
+         input[type='text'], input[type='password'] { float: left; width: 16em; }
+         em { color: red; font-style: normal; }
+      </style>
+   </head>
+   <body>
+      <% form_for Session.new do |f| %>
+         <fieldset>
+            <legend>
+               <%= request.subdomains.first %>
+               <em><%= flash[:notice] %></em>
+            </legend>
+            <%= f.label :login %>
+            <%= f.text_field :login %>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+            <br clear='all'/>
+            <%= f.submit "Login" %>
+         </fieldset>
+      <% end %>
+   </body>
+</html>

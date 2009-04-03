@@ -44,7 +44,7 @@ class FeaturesDeleteTest < FeatureFunctionalTest
   end
   
   test "should remove delete" do
-    stub_product
+    login_with @keith
     xhr :delete, :destroy, :id => @prioritise_features.id
     # TODO: investigate why "$(\"feature_682820712\").hide();" is not asserting correctly
     # puts @response.body.inspect

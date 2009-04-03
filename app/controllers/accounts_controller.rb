@@ -1,7 +1,5 @@
 class AccountsController < ApplicationController
-  skip_before_filter :find_product
-  
-  layout false
+  public_facing
   
   def new
     render

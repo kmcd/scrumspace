@@ -1,19 +1,16 @@
 require 'test_helper'
 
 class AccountTest < ActiveSupport::TestCase
-  def setup
-    @account = Account.new(:login => 'kmcd', :password => 'foobar', 
-      :password_confirmation => 'foobar')
-  end
-  
   test "should be able to signup" do
-    assert @account.valid?
-    assert @account.save!
+    assert Account.new(:login => 'test', :password => 'foobar', 
+      :password_confirmation => 'foobar').valid?
   end
   
-  test "should be able to login" do
+  test "should authorise product access" do
+    assert @keith.access?(@scrumspace)
   end
   
-  test "should have a product by default" do
+  test "should have access to many products" do
+    assert @keith.products.include? @scrumspace
   end
 end

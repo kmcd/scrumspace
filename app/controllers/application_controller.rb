@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  before_filter :find_product
+  before_filter :find_product, :ensure_login
   
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_account_session, :current_account
@@ -11,17 +11,23 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '893338604f8f573566ad0ba4b9258249'
   
+  def self.public_facing
+    skip_before_filter :find_product, :ensure_login
+    layout false
+  end
+  
   private
   
-  # TODO: refactor 
-  def current_account_session
-    return @current_account_session if defined?(@current_account_session)
-    @current_account_session = UserSession.find
+  def ensure_login
+    current_account && current_account.products.include?(find_product)
+  end
+  
+  def current_session
+    @current_session ||= Session.find
   end
 
   def current_account
-    return @current_account if defined?(@current_account)
-    @current_account = current_account_session && current_account_session.user
+    @current_account ||= current_session.account
   end
   
   def find_product

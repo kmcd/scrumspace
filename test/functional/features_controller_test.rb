@@ -27,7 +27,7 @@ end
 
 class FeaturesControllerCreateTest < FeatureFunctionalTest
   def setup
-    stub_product
+    login_with @keith
     post :create, :feature => {:description => 'foo'}
   end
   
@@ -42,7 +42,7 @@ end
 
 class FeaturesControllerUpdateTest < FeatureFunctionalTest
   def setup
-    stub_product
+    login_with @keith
     put :update, :id => @prioritise_features.id, :feature => {:description => 'foo'}
   end
   
@@ -58,7 +58,7 @@ end
 class FeaturesControllerDeleteTest < FeatureFunctionalTest
   
   def setup
-    stub_product
+    login_with @keith
     post :destroy, :id => @prioritise_features.id
   end
   

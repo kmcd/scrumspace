@@ -11,6 +11,18 @@ module FeaturesHelper
   end
   
   def blank_slate?
-    @features.empty?
+    @product.features.empty?
+  end
+  
+  def new_feature_visability
+    'display: none' unless blank_slate?
+  end
+  
+  def new_feature_link
+    unless blank_slate?
+      link_to_function('Hide') do |page| 
+        page[:new].toggle
+      end
+    end
   end
 end

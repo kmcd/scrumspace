@@ -1,7 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-scrumspace:
-  name: scrumspace
-
-test:
-  name: test
+keith_on_scrumspace:
+  product: scrumspace
+  account: keith

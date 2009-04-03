@@ -4,6 +4,7 @@ require 'test_help'
 require 'redgreen'
 require 'mocha'
 Dir.glob(File.join(File.dirname(__FILE__), '../test/helpers/*.rb')).each {|f| require f }
+require 'authlogic/test_case'
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method

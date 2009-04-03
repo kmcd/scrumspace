@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts, :features, :tasks, :sessions
   
   # TODO: change to marketing page
-  map.root :features
+  map.root :controller => 'products', :action => 'new'
   
   # Sample resource route with options:
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }

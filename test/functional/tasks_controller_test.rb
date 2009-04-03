@@ -12,7 +12,7 @@ end
 
 class TasksControllerDeleteTest < TaskFunctionalTest
   def setup
-    stub_product
+    login_with @keith
     delete :destroy, :id => @create_mockups.id
   end
   
@@ -28,9 +28,8 @@ class TasksControllerDeleteTest < TaskFunctionalTest
 end
 
 class TasksControllerUpdateTest < TaskFunctionalTest
-  
   def setup
-    stub_product
+    login_with @keith
     put :update, {:id => @create_mockups.id, :task => {:description => 'foo'}}
   end
   
@@ -45,7 +44,7 @@ end
 
 class TasksControllerCreateTest < TaskFunctionalTest
   def setup
-    stub_product
+    login_with @keith
     post :create, :task => {:description => 'foo'}
   end
   

@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :find_product
-  layout false
+  public_facing
   
   def new
     render
@@ -9,17 +8,10 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(params[:session])
     if @session.save
-      flash[:notice] = "Login successful!"
-      redirect_to root_url(:host => product_url(params[:product]))
+      redirect_to features_url
     else
-      flash[:notice] = "Login failed!"
+      flash[:notice] = "login failed"
       render :action => :new
     end
-  end
-  
-  def destroy
-    current_session.destroy
-    flash[:notice] = "Logout successful!"
-    redirect_back_or_default new_session_url
   end
 end

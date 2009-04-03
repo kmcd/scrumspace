@@ -1,9 +1,5 @@
 require 'test_helper'
 
-def assert_invalid(&blk)
-  assert_raise(ActiveRecord::RecordInvalid) { blk.call }
-end
-
 class ProductTest < ActiveSupport::TestCase
   RESERVED_NAMES = %w( support blog www billing help api )
   
@@ -37,7 +33,7 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal [@create_mockups,@create_data_model], @scrumspace.tasks
   end
   
-  test "should have (alphabetically ordered) steam members" do
+  test "should have (alphabetically ordered) team members" do
     assert_equal %w(Keith Ringo), @scrumspace.reload.team
   end
   
