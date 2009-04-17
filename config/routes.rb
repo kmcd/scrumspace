@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
 
-  map.resources :accounts, :features, :tasks, :sessions
+  map.resources :accounts, :features, :products, :tasks, :sessions
   
   # TODO: change to marketing page
   map.root :controller => 'products', :action => 'new'

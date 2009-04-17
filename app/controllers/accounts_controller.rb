@@ -1,10 +1,6 @@
 class AccountsController < ApplicationController
   public_facing
   
-  def new
-    render
-  end
-  
   def create
     if Account.create(params[:account])
       Product.create! :name => params[:product]

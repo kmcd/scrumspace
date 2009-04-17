@@ -1,0 +1,9 @@
+<p><%= flash[:notice] %><p>
+
+<% form_for Product.new do |f| %>
+   <%= f.error_messages %>
+   
+   <p>http://<%= f.text_field :name %>.scrumspace.com</p>
+
+   <%= f.submit "Take a test drive" %>
+<% end %>

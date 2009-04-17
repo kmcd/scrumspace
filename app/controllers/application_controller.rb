@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     @product ||= Product.find_by_name(request.subdomains.first)
   end
   
-  def product_url(name)
+  def product_url_for(name)
     request.host.sub /^\w*\.*(scrumspace)/, "#{name}.\\1"
   end
 end
